@@ -1,35 +1,28 @@
 ﻿@model DatabaseLayer.CityTable
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Add New City";
 }
 
-<h2>Create</h2>
+<div class="col-md-6">
+    <div class="contact-form-block">
+        <h2 class="contact-title">Add New City</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>CityTable</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                Enter City Name:
                 @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                <input type="submit" style="float: right" value="Create" class="btn btn-theme" />
+                @Html.ActionLink("Back", "Index", null, new { @class="btn btn-theme-invert" })
             </div>
-        </div>
+        }
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>

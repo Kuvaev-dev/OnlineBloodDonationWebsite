@@ -1,33 +1,35 @@
 ﻿@model IEnumerable<DatabaseLayer.CityTable>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cities";
 }
 
-<h2>Index</h2>
+<div class="col-md-8">
+    <div class="contact-form-block">
+        <h2 class="contact-title">All Cities</h2>
+        <p>
+            @Html.ActionLink("New City", "Create", null, new { @class = "btn btn-primary" })
+        </p>
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    City
+                </th>
+                <th></th>
+            </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-left">
+                        @Html.DisplayFor(modelItem => item.City)
+                    </td>
+                    <td class="text-right">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.CityID }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CityID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CityID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CityID })
-        </td>
-    </tr>
-}
-
-</table>
+        </table>
+    </div>
+</div>

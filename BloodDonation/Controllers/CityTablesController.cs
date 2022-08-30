@@ -38,7 +38,8 @@ namespace BloodDonation.Controllers
         // GET: CityTables/Create
         public ActionResult Create()
         {
-            return View();
+            var city = new CityTable();
+            return View(city);
         }
 
         // POST: CityTables/Create
