@@ -13,5 +13,10 @@ namespace BloodDonation.Controllers
         {
             return View();
         }
+
+        public ActionResult MainHome()
+        {
+            return View();
+        }
     }
 }
