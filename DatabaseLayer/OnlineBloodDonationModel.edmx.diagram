@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="91021357193c4ee39a0e32c9793eca00" Name="Diagram1">
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodBankStockTable" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodBankTable" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodGroupTable" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.CityTable" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.DonorTable" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.GenderTable" Width="1.5" PointX="5.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.HospitalTable" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.RequestTable" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.RequestTypeTable" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.SeekerTable" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockTable_BloodBankTable" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockTable_BloodGroupTable" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankTable_CityTable" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_BloodGroupTable" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_BloodGroupTable" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_CityTable" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_HospitalTable_CityTable" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_CityTable" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_GenderTable" ManuallyRouted="false" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_RequestTable_RequestTypeTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
