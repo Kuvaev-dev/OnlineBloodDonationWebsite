@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="91021357193c4ee39a0e32c9793eca00" Name="Diagram1">
+      <Diagram DiagramId="91021357193c4ee39a0e32c9793eca00" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodBankStockTable" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodBankTable" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodGroupTable" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
@@ -25,6 +25,15 @@
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_CityTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_GenderTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_RequestTable_RequestTypeTable" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.AccountStatusTable" Width="1.5" PointX="10" PointY="10.75" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.UserTable" Width="1.5" PointX="12.25" PointY="9.875" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.UserTypeTable" Width="1.5" PointX="10" PointY="13.75" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_UserTable_AccountStatusTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankTable_UserTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_UserTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_HospitalTable_UserTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_UserTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_UserTable_UserTypeTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

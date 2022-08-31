@@ -4,7 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище db_a8c2c8_blooddonationModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище db_a8c2c8_blooddonationModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountStatusTable">
+          <Key>
+            <PropertyRef Name="AccountStatusID" />
+          </Key>
+          <Property Name="AccountStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="BloodBankStockTable">
           <Key>
             <PropertyRef Name="BloodBankStockID" />
@@ -28,6 +35,7 @@
           <Property Name="WebSite" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="BloodGroupTable">
           <Key>
@@ -55,6 +63,7 @@
           <Property Name="CNIC" Type="nvarchar" MaxLength="17" Nullable="false" />
           <Property Name="Location" Type="nvarchar" MaxLength="300" Nullable="false" />
           <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="GenderTable">
           <Key>
@@ -75,6 +84,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Location" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RequestTable">
           <Key>
@@ -108,6 +118,25 @@
           <Property Name="ContactNo" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="CNIC" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="GenderID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="AccountStatusID" Type="int" Nullable="false" />
+          <Property Name="UserTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTypeTable">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK_BloodBankStockTable_BloodBankTable">
           <End Role="BloodBankTable" Type="Self.BloodBankTable" Multiplicity="1" />
@@ -145,6 +174,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BloodBankTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="BloodBankTable" Type="Self.BloodBankTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BloodBankTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DonorTable_BloodGroupTable">
           <End Role="BloodGroupTable" Type="Self.BloodGroupTable" Multiplicity="1" />
           <End Role="DonorTable" Type="Self.DonorTable" Multiplicity="*" />
@@ -169,6 +210,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DonorTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="DonorTable" Type="Self.DonorTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="DonorTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HospitalTable_CityTable">
           <End Role="CityTable" Type="Self.CityTable" Multiplicity="1" />
           <End Role="HospitalTable" Type="Self.HospitalTable" Multiplicity="*" />
@@ -178,6 +231,18 @@
             </Principal>
             <Dependent Role="HospitalTable">
               <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HospitalTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="HospitalTable" Type="Self.HospitalTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="HospitalTable">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -229,7 +294,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SeekerTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="SeekerTable" Type="Self.SeekerTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SeekerTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_AccountStatusTable">
+          <End Role="AccountStatusTable" Type="Self.AccountStatusTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountStatusTable">
+              <PropertyRef Name="AccountStatusID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="AccountStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_UserTypeTable">
+          <End Role="UserTypeTable" Type="Self.UserTypeTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypeTable">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище db_a8c2c8_blooddonationModelContainer">
+          <EntitySet Name="AccountStatusTable" EntityType="Self.AccountStatusTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BloodBankStockTable" EntityType="Self.BloodBankStockTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BloodBankTable" EntityType="Self.BloodBankTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BloodGroupTable" EntityType="Self.BloodGroupTable" Schema="dbo" store:Type="Tables" />
@@ -240,6 +342,8 @@
           <EntitySet Name="RequestTable" EntityType="Self.RequestTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RequestTypeTable" EntityType="Self.RequestTypeTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SeekerTable" EntityType="Self.SeekerTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTypeTable" EntityType="Self.UserTypeTable" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BloodBankStockTable_BloodBankTable" Association="Self.FK_BloodBankStockTable_BloodBankTable">
             <End Role="BloodBankTable" EntitySet="BloodBankTable" />
             <End Role="BloodBankStockTable" EntitySet="BloodBankStockTable" />
@@ -252,6 +356,10 @@
             <End Role="CityTable" EntitySet="CityTable" />
             <End Role="BloodBankTable" EntitySet="BloodBankTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_BloodBankTable_UserTable" Association="Self.FK_BloodBankTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="BloodBankTable" EntitySet="BloodBankTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_DonorTable_BloodGroupTable" Association="Self.FK_DonorTable_BloodGroupTable">
             <End Role="BloodGroupTable" EntitySet="BloodGroupTable" />
             <End Role="DonorTable" EntitySet="DonorTable" />
@@ -260,8 +368,16 @@
             <End Role="CityTable" EntitySet="CityTable" />
             <End Role="DonorTable" EntitySet="DonorTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_DonorTable_UserTable" Association="Self.FK_DonorTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="DonorTable" EntitySet="DonorTable" />
+          </AssociationSet>
           <AssociationSet Name="FK_HospitalTable_CityTable" Association="Self.FK_HospitalTable_CityTable">
             <End Role="CityTable" EntitySet="CityTable" />
+            <End Role="HospitalTable" EntitySet="HospitalTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HospitalTable_UserTable" Association="Self.FK_HospitalTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
             <End Role="HospitalTable" EntitySet="HospitalTable" />
           </AssociationSet>
           <AssociationSet Name="FK_RequestTable_RequestTypeTable" Association="Self.FK_RequestTable_RequestTypeTable">
@@ -280,9 +396,20 @@
             <End Role="GenderTable" EntitySet="GenderTable" />
             <End Role="SeekerTable" EntitySet="SeekerTable" />
           </AssociationSet>
+          <AssociationSet Name="FK_SeekerTable_UserTable" Association="Self.FK_SeekerTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="SeekerTable" EntitySet="SeekerTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_AccountStatusTable" Association="Self.FK_UserTable_AccountStatusTable">
+            <End Role="AccountStatusTable" EntitySet="AccountStatusTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_UserTypeTable" Association="Self.FK_UserTable_UserTypeTable">
+            <End Role="UserTypeTable" EntitySet="UserTypeTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="db_a8c2c8_blooddonationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -313,6 +440,8 @@
           <Property Name="CityID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BloodBankStockTables" Relationship="Self.FK_BloodBankStockTable_BloodBankTable" FromRole="BloodBankTable" ToRole="BloodBankStockTable" />
           <NavigationProperty Name="CityTable" Relationship="Self.FK_BloodBankTable_CityTable" FromRole="BloodBankTable" ToRole="CityTable" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserTable" Relationship="db_a8c2c8_blooddonationModel.FK_BloodBankTable_UserTable" FromRole="BloodBankTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="BloodGroupTable">
           <Key>
@@ -349,6 +478,8 @@
           <Property Name="CityID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BloodGroupTable" Relationship="Self.FK_DonorTable_BloodGroupTable" FromRole="DonorTable" ToRole="BloodGroupTable" />
           <NavigationProperty Name="CityTable" Relationship="Self.FK_DonorTable_CityTable" FromRole="DonorTable" ToRole="CityTable" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserTable" Relationship="db_a8c2c8_blooddonationModel.FK_DonorTable_UserTable" FromRole="DonorTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="GenderTable">
           <Key>
@@ -371,6 +502,8 @@
           <Property Name="Location" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CityID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CityTable" Relationship="Self.FK_HospitalTable_CityTable" FromRole="HospitalTable" ToRole="CityTable" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserTable" Relationship="db_a8c2c8_blooddonationModel.FK_HospitalTable_UserTable" FromRole="HospitalTable" ToRole="UserTable" />
         </EntityType>
         <EntityType Name="RequestTable">
           <Key>
@@ -409,6 +542,8 @@
           <NavigationProperty Name="BloodGroupTable" Relationship="Self.FK_SeekerTable_BloodGroupTable" FromRole="SeekerTable" ToRole="BloodGroupTable" />
           <NavigationProperty Name="CityTable" Relationship="Self.FK_SeekerTable_CityTable" FromRole="SeekerTable" ToRole="CityTable" />
           <NavigationProperty Name="GenderTable" Relationship="Self.FK_SeekerTable_GenderTable" FromRole="SeekerTable" ToRole="GenderTable" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserTable" Relationship="db_a8c2c8_blooddonationModel.FK_SeekerTable_UserTable" FromRole="SeekerTable" ToRole="UserTable" />
         </EntityType>
         <Association Name="FK_BloodBankStockTable_BloodBankTable">
           <End Role="BloodBankTable" Type="Self.BloodBankTable" Multiplicity="1" />
@@ -581,7 +716,139 @@
             <End Role="RequestTypeTable" EntitySet="RequestTypeTables" />
             <End Role="RequestTable" EntitySet="RequestTables" />
           </AssociationSet>
+          <EntitySet Name="AccountStatusTables" EntityType="db_a8c2c8_blooddonationModel.AccountStatusTable" />
+          <EntitySet Name="UserTables" EntityType="db_a8c2c8_blooddonationModel.UserTable" />
+          <EntitySet Name="UserTypeTables" EntityType="db_a8c2c8_blooddonationModel.UserTypeTable" />
+          <AssociationSet Name="FK_UserTable_AccountStatusTable" Association="db_a8c2c8_blooddonationModel.FK_UserTable_AccountStatusTable">
+            <End Role="AccountStatusTable" EntitySet="AccountStatusTables" />
+            <End Role="UserTable" EntitySet="UserTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BloodBankTable_UserTable" Association="db_a8c2c8_blooddonationModel.FK_BloodBankTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="BloodBankTable" EntitySet="BloodBankTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonorTable_UserTable" Association="db_a8c2c8_blooddonationModel.FK_DonorTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="DonorTable" EntitySet="DonorTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HospitalTable_UserTable" Association="db_a8c2c8_blooddonationModel.FK_HospitalTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="HospitalTable" EntitySet="HospitalTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SeekerTable_UserTable" Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="SeekerTable" EntitySet="SeekerTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_UserTypeTable" Association="db_a8c2c8_blooddonationModel.FK_UserTable_UserTypeTable">
+            <End Role="UserTypeTable" EntitySet="UserTypeTables" />
+            <End Role="UserTable" EntitySet="UserTables" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AccountStatusTable">
+          <Key>
+            <PropertyRef Name="AccountStatusID" />
+          </Key>
+          <Property Name="AccountStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserTables" Relationship="db_a8c2c8_blooddonationModel.FK_UserTable_AccountStatusTable" FromRole="AccountStatusTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="AccountStatusID" Type="Int32" Nullable="false" />
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AccountStatusTable" Relationship="db_a8c2c8_blooddonationModel.FK_UserTable_AccountStatusTable" FromRole="UserTable" ToRole="AccountStatusTable" />
+          <NavigationProperty Name="BloodBankTables" Relationship="db_a8c2c8_blooddonationModel.FK_BloodBankTable_UserTable" FromRole="UserTable" ToRole="BloodBankTable" />
+          <NavigationProperty Name="DonorTables" Relationship="db_a8c2c8_blooddonationModel.FK_DonorTable_UserTable" FromRole="UserTable" ToRole="DonorTable" />
+          <NavigationProperty Name="HospitalTables" Relationship="db_a8c2c8_blooddonationModel.FK_HospitalTable_UserTable" FromRole="UserTable" ToRole="HospitalTable" />
+          <NavigationProperty Name="SeekerTables" Relationship="db_a8c2c8_blooddonationModel.FK_SeekerTable_UserTable" FromRole="UserTable" ToRole="SeekerTable" />
+          <NavigationProperty Name="UserTypeTable" Relationship="db_a8c2c8_blooddonationModel.FK_UserTable_UserTypeTable" FromRole="UserTable" ToRole="UserTypeTable" />
+        </EntityType>
+        <EntityType Name="UserTypeTable">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserTables" Relationship="db_a8c2c8_blooddonationModel.FK_UserTable_UserTypeTable" FromRole="UserTypeTable" ToRole="UserTable" />
+        </EntityType>
+        <Association Name="FK_UserTable_AccountStatusTable">
+          <End Type="db_a8c2c8_blooddonationModel.AccountStatusTable" Role="AccountStatusTable" Multiplicity="1" />
+          <End Type="db_a8c2c8_blooddonationModel.UserTable" Role="UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountStatusTable">
+              <PropertyRef Name="AccountStatusID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="AccountStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BloodBankTable_UserTable">
+          <End Type="db_a8c2c8_blooddonationModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="db_a8c2c8_blooddonationModel.BloodBankTable" Role="BloodBankTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BloodBankTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonorTable_UserTable">
+          <End Type="db_a8c2c8_blooddonationModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="db_a8c2c8_blooddonationModel.DonorTable" Role="DonorTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="DonorTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HospitalTable_UserTable">
+          <End Type="db_a8c2c8_blooddonationModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="db_a8c2c8_blooddonationModel.HospitalTable" Role="HospitalTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="HospitalTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SeekerTable_UserTable">
+          <End Type="db_a8c2c8_blooddonationModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="db_a8c2c8_blooddonationModel.SeekerTable" Role="SeekerTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="SeekerTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_UserTypeTable">
+          <End Type="db_a8c2c8_blooddonationModel.UserTypeTable" Role="UserTypeTable" Multiplicity="1" />
+          <End Type="db_a8c2c8_blooddonationModel.UserTable" Role="UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypeTable">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -603,6 +870,7 @@
           <EntitySetMapping Name="BloodBankTables">
             <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.BloodBankTable">
               <MappingFragment StoreEntitySet="BloodBankTable">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="BloodBankID" ColumnName="BloodBankID" />
                 <ScalarProperty Name="BloodBankName" ColumnName="BloodBankName" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -633,6 +901,7 @@
           <EntitySetMapping Name="DonorTables">
             <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.DonorTable">
               <MappingFragment StoreEntitySet="DonorTable">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="DonorID" ColumnName="DonorID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="BloodGroupID" ColumnName="BloodGroupID" />
@@ -655,6 +924,7 @@
           <EntitySetMapping Name="HospitalTables">
             <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.HospitalTable">
               <MappingFragment StoreEntitySet="HospitalTable">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="HospitalID" ColumnName="HospitalID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
@@ -691,6 +961,7 @@
           <EntitySetMapping Name="SeekerTables">
             <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.SeekerTable">
               <MappingFragment StoreEntitySet="SeekerTable">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="SeekerID" ColumnName="SeekerID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
@@ -699,6 +970,34 @@
                 <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
                 <ScalarProperty Name="CNIC" ColumnName="CNIC" />
                 <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountStatusTables">
+            <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.AccountStatusTable">
+              <MappingFragment StoreEntitySet="AccountStatusTable">
+                <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+                <ScalarProperty Name="AccountStatusID" ColumnName="AccountStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTables">
+            <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="AccountStatusID" ColumnName="AccountStatusID" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypeTables">
+            <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.UserTypeTable">
+              <MappingFragment StoreEntitySet="UserTypeTable">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

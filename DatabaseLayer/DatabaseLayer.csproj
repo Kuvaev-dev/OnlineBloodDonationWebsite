@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountStatusTable.cs">
+      <DependentUpon>OnlineBloodDonationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BloodBankStockTable.cs">
       <DependentUpon>OnlineBloodDonationModel.tt</DependentUpon>
     </Compile>
@@ -94,6 +97,12 @@
       <DependentUpon>OnlineBloodDonationModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SeekerTable.cs">
+      <DependentUpon>OnlineBloodDonationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserTable.cs">
+      <DependentUpon>OnlineBloodDonationModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserTypeTable.cs">
       <DependentUpon>OnlineBloodDonationModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

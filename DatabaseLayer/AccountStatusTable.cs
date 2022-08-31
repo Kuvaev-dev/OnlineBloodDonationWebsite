@@ -12,21 +12,18 @@ namespace DatabaseLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class SeekerTable
+    public partial class AccountStatusTable
     {
-        public int SeekerID { get; set; }
-        public string FullName { get; set; }
-        public int Age { get; set; }
-        public int CityID { get; set; }
-        public int BloodGroupID { get; set; }
-        public string ContactNo { get; set; }
-        public string CNIC { get; set; }
-        public int GenderID { get; set; }
-        public int UserID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AccountStatusTable()
+        {
+            this.UserTables = new HashSet<UserTable>();
+        }
     
-        public virtual BloodGroupTable BloodGroupTable { get; set; }
-        public virtual CityTable CityTable { get; set; }
-        public virtual GenderTable GenderTable { get; set; }
-        public virtual UserTable UserTable { get; set; }
+        public int AccountStatusID { get; set; }
+        public string AccountStatus { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserTable> UserTables { get; set; }
     }
 }

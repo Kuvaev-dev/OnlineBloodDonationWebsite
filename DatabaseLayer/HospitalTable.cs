@@ -22,7 +22,9 @@ namespace DatabaseLayer
         public string Email { get; set; }
         public string Location { get; set; }
         public int CityID { get; set; }
+        public int UserID { get; set; }
     
         public virtual CityTable CityTable { get; set; }
+        public virtual UserTable UserTable { get; set; }
     }
 }
