@@ -228,6 +228,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CityTablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RequestTypeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,6 +279,9 @@
     <Content Include="Views\CityTables\Details.cshtml" />
     <Content Include="Views\CityTables\Edit.cshtml" />
     <Content Include="Views\CityTables\Index.cshtml" />
+    <Content Include="Views\RequestType\AllRequestType.cshtml" />
+    <Content Include="Views\RequestType\Edit.cshtml" />
+    <Content Include="Views\RequestType\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
