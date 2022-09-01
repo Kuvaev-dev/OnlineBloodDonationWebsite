@@ -20,21 +20,6 @@ namespace BloodDonation.Controllers
             return View(db.CityTables.ToList());
         }
 
-        // GET: CityTables/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CityTable cityTable = db.CityTables.Find(id);
-            if (cityTable == null)
-            {
-                return HttpNotFound();
-            }
-            return View(cityTable);
-        }
-
         // GET: CityTables/Create
         public ActionResult Create()
         {

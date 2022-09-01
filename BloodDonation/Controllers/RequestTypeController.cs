@@ -29,23 +29,6 @@ namespace BloodDonation.Controllers
             return View(listRequestTypes);
         }
 
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            var requestTypeTable = DB.RequestTypeTables.Find(id);
-            var requestType = new RequestTypeMV();
-            requestType.RequestTypeID = requestTypeTable.RequestTypeID;
-            requestType.RequestType = requestTypeTable.RequestType;
-            if (requestType == null)
-            {
-                return HttpNotFound();
-            }
-            return View(requestType);
-        }
-
         public ActionResult Create()
         {
             var requestType = new RequestTypeMV();
@@ -116,7 +99,7 @@ namespace BloodDonation.Controllers
             return View(requestTypeMV);
         }
 
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirm(int? id)
         {

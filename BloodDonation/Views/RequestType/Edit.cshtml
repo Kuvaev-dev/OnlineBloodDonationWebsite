@@ -15,15 +15,7 @@
             @Html.HiddenFor(model => model.RequestTypeID)
 
             <div class="form-group">
-                @Html.LabelFor(model => model.RequestType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.RequestType, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.RequestType, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                Enter Request Type:
+                Update Request Type:
                 @Html.EditorFor(model => model.RequestType, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.RequestType, "", new { @class = "text-danger" })
             </div>
