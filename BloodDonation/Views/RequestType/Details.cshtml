@@ -1,0 +1,26 @@
+﻿@model BloodDonation.Models.RequestTypeMV
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RequestTypeTable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RequestTypeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

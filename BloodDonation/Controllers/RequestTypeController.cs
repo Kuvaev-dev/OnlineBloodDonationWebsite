@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using System.Net;
+using BloodDonation.Models;
 
 namespace BloodDonation.Controllers
 {
@@ -16,27 +17,56 @@ namespace BloodDonation.Controllers
         public ActionResult AllRequestType()
         {
             var requestTypes = DB.RequestTypeTables.ToList();
-            return View(requestTypes);
+            var listRequestTypes = new List<RequestTypeMV>();
+
+            foreach (var requestType in requestTypes)
+            {
+                var addRequestType = new RequestTypeMV();
+                addRequestType.RequestTypeID = requestType.RequestTypeID;
+                addRequestType.RequestType = requestType.RequestType;
+                listRequestTypes.Add(addRequestType);
+            }
+            return View(listRequestTypes);
+        }
+
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var requestTypeTable = DB.RequestTypeTables.Find(id);
+            var requestType = new RequestTypeMV();
+            requestType.RequestTypeID = requestTypeTable.RequestTypeID;
+            requestType.RequestType = requestTypeTable.RequestType;
+            if (requestType == null)
+            {
+                return HttpNotFound();
+            }
+            return View(requestType);
         }
 
         public ActionResult Create()
         {
-            var requestType = new RequestTypeTable();
+            var requestType = new RequestTypeMV();
             return View(requestType);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(RequestTypeTable requestTypeTable)
+        public ActionResult Create(RequestTypeMV requestTypeMV)
         {
             if (ModelState.IsValid)
             {
+                var requestTypeTable = new RequestTypeTable();
+                requestTypeTable.RequestTypeID = requestTypeMV.RequestTypeID;
+                requestTypeTable.RequestType = requestTypeMV.RequestType;
                 DB.RequestTypeTables.Add(requestTypeTable);
                 DB.SaveChanges();
                 return RedirectToAction("AllRequestType");
             }
                
-            return View(requestTypeTable);
+            return View(requestTypeMV);
         }
 
         public ActionResult Edit(int? id)
@@ -46,20 +76,26 @@ namespace BloodDonation.Controllers
             {
                 return HttpNotFound();
             }
-            return View(requestType);
+            var requestTypeMV = new RequestTypeMV();
+            requestTypeMV.RequestTypeID = requestType.RequestTypeID;
+            requestTypeMV.RequestType = requestType.RequestType;
+            return View(requestTypeMV);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(RequestTypeTable requestTypeTable)
+        public ActionResult Edit(RequestTypeMV requestTypeMV)
         {
             if (ModelState.IsValid)
             {
+                var requestTypeTable = new RequestTypeTable();
+                requestTypeTable.RequestTypeID = requestTypeMV.RequestTypeID;
+                requestTypeTable.RequestType = requestTypeMV.RequestType;
                 DB.Entry(requestTypeTable).State = EntityState.Modified;
                 DB.SaveChanges();
                 return RedirectToAction("AllRequestType");
             }
-            return View(requestTypeTable);
+            return View(requestTypeMV);
         }
 
         public ActionResult Delete(int? id)
@@ -74,7 +110,10 @@ namespace BloodDonation.Controllers
             {
                 return HttpNotFound();
             }
-            return View(requestType);
+            var requestTypeMV = new RequestTypeMV();
+            requestTypeMV.RequestTypeID = requestType.RequestTypeID;
+            requestTypeMV.RequestType = requestType.RequestType;
+            return View(requestTypeMV);
         }
 
         [HttpPost]
