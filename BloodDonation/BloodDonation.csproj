@@ -226,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountStatusController.cs" />
     <Compile Include="Controllers\BloodGroupController.cs" />
     <Compile Include="Controllers\CityTablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -234,6 +235,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AccountStatusMV.cs" />
     <Compile Include="Models\BloodGroupsMV.cs" />
     <Compile Include="Models\RequestTypeMV.cs" />
     <Compile Include="Models\UserTypeMV.cs" />
@@ -295,6 +297,10 @@
     <Content Include="Views\BloodGroup\Create.cshtml" />
     <Content Include="Views\BloodGroup\Edit.cshtml" />
     <Content Include="Views\BloodGroup\Delete.cshtml" />
+    <Content Include="Views\AccountStatus\AllAccountStatus.cshtml" />
+    <Content Include="Views\AccountStatus\Create.cshtml" />
+    <Content Include="Views\AccountStatus\Edit.cshtml" />
+    <Content Include="Views\AccountStatus\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

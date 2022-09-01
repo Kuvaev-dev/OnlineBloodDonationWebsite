@@ -39,19 +39,22 @@ namespace BloodDonation.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(BloodGroupsMV bloodGroupsMV)
         {
-            var checkBloodGroup = DB.BloodGroupTables.Where(bg => bg.BloodGroup == bloodGroupsMV.BloodGroup).FirstOrDefault();
-            if (checkBloodGroup == null)
+            if (ModelState.IsValid)
             {
-                var bloodGroupTable = new BloodGroupTable();
-                bloodGroupTable.BloodGroupID = bloodGroupsMV.BloodGroupID;
-                bloodGroupTable.BloodGroup = bloodGroupsMV.BloodGroup;
-                DB.BloodGroupTables.Add(bloodGroupTable);
-                DB.SaveChanges();
-                return RedirectToAction("AllBloodGroups");
-            } 
-            else
-            {
-                ModelState.AddModelError("BloodGroup", "Already exist");
+                var checkBloodGroup = DB.BloodGroupTables.Where(bg => bg.BloodGroup == bloodGroupsMV.BloodGroup).FirstOrDefault();
+                if (checkBloodGroup == null)
+                {
+                    var bloodGroupTable = new BloodGroupTable();
+                    bloodGroupTable.BloodGroupID = bloodGroupsMV.BloodGroupID;
+                    bloodGroupTable.BloodGroup = bloodGroupsMV.BloodGroup;
+                    DB.BloodGroupTables.Add(bloodGroupTable);
+                    DB.SaveChanges();
+                    return RedirectToAction("AllBloodGroups");
+                }
+                else
+                {
+                    ModelState.AddModelError("BloodGroup", "Already exist");
+                }
             }
 
             return View(bloodGroupsMV);
