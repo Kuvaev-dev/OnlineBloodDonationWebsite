@@ -131,6 +131,7 @@
           <Property Name="EmailAddress" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="AccountStatusID" Type="int" Nullable="false" />
           <Property Name="UserTypeID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="UserTypeTable">
           <Key>
@@ -770,6 +771,7 @@
           <NavigationProperty Name="HospitalTables" Relationship="db_a8c2c8_blooddonationModel.FK_HospitalTable_UserTable" FromRole="UserTable" ToRole="HospitalTable" />
           <NavigationProperty Name="SeekerTables" Relationship="db_a8c2c8_blooddonationModel.FK_SeekerTable_UserTable" FromRole="UserTable" ToRole="SeekerTable" />
           <NavigationProperty Name="UserTypeTable" Relationship="db_a8c2c8_blooddonationModel.FK_UserTable_UserTypeTable" FromRole="UserTable" ToRole="UserTypeTable" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserTypeTable">
           <Key>
@@ -987,6 +989,7 @@
           <EntitySetMapping Name="UserTables">
             <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.UserTable">
               <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
                 <ScalarProperty Name="AccountStatusID" ColumnName="AccountStatusID" />
                 <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />

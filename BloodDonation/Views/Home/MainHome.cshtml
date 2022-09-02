@@ -1,6 +1,6 @@
-﻿<!--  HOME SLIDER BLOCK  -->
-<!--  HOME SLIDER BLOCK  -->
+﻿@model BloodDonation.Models.ReigstrationMV
 
+<!--  HOME SLIDER BLOCK  -->
 <div class="slider-wrap">
     <div id="slider_1" class="owl-carousel" data-nav="true" data-dots="false" data-autoplay="true" data-autoplaytimeout="17000">
         <div class="slider_item_container" data-bg_img="../Content/Template/images/home_1_slider_1.jpg" data-bg_color="#555555" data-bg_opacity="0.0">
@@ -311,44 +311,49 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-top-appointment-reverse">
                 <div class="appointment-form-wrapper theme-custom-box-shadow text-center clearfix wow zoomIn">
-                    <h3 class="join-heading join-heading-alt">Request Appointment</h3>
-                    <form class="appoinment-form">
+                    <h3 class="join-heading join-heading-alt">Registration</h3>
+                    @using (Html.BeginForm("", "", FormMethod.Post, new { @class = "appoinment-form" }))
+                    {
                         <div class="form-group col-md-6">
-                            <input id="your_name" class="form-control" placeholder="Name" type="text">
+                            @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "User Name", @type = "text" } })
+                            @Html.ValidationMessageFor(model => model.User.UserName, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group col-md-6">
-                            <input id="your_email" class="form-control" placeholder="Email" type="email">
+                            @Html.EditorFor(model => model.User.EmailAddress, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email Address", @type = "email" } })
+                            @Html.ValidationMessageFor(model => model.User.EmailAddress, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group col-md-6">
-                            <input id="your_phone" class="form-control" placeholder="Phone" type="text">
+                            @Html.EditorFor(model => model.User.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @type = "password" } })
+                            @Html.ValidationMessageFor(model => model.User.Password, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group col-md-6">
                             <div class="select-style">
-                                <select class="form-control" name="your_center">
-                                    <option>Donation Center</option>
-                                    <option>Los Angles</option>
-                                    <option>California</option>
-                                </select>
+                                @Html.DropDownList("UserTypeID", null, "-- Relationship", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.UserTypeID, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group col-md-6">
-                            <input id="your_date" class="form-control" placeholder="Date" type="text">
+                            @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contact №" } })
+                            @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group col-md-6">
-                            <input id="your_time" class="form-control" placeholder="Time" type="text">
+                            <div class="select-style">
+                                @Html.DropDownList("CityID", null, "-- Your City", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+                            </div>
                         </div>
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                            <textarea id="textarea_message" class="form-control" rows="4" placeholder="Your Message..."></textarea>
+                            @Html.TextAreaFor(model => model.User.Description, 4, 12, new { @class = "form-control", @placeholder = "Your Message" })
+                            @Html.ValidationMessageFor(model => model.User.Description, "", new { @class = "text-danger" })
                         </div>
 
                         <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                            <button id="btn_submit" class="btn btn-theme" type="submit">Get Appointment</button>
+                            <button id="btn_submit" class="btn btn-theme" type="submit">Submit</button>
                         </div>
-
-                    </form>
+                    }
                 </div> <!-- end .appointment-form-wrapper  -->
             </div> <!--  end .col-lg-6 -->
         </div> <!--  end .row  -->
