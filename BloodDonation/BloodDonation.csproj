@@ -309,6 +309,10 @@
     <Content Include="Views\AccountStatus\Edit.cshtml" />
     <Content Include="Views\AccountStatus\Delete.cshtml" />
     <Content Include="Views\Registration\UserRegistration.cshtml" />
+    <Content Include="Views\Registration\HospitalUser.cshtml" />
+    <Content Include="Views\Registration\DonorUser.cshtml" />
+    <Content Include="Views\Registration\BloodBankUser.cshtml" />
+    <Content Include="Views\Registration\SeekerUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
