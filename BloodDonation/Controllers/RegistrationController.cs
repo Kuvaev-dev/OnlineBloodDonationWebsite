@@ -56,28 +56,45 @@ namespace BloodDonation.Controllers
                 var checkTitle = DB.HospitalTables.Where(h => h.FullName == reigstrationMV.Hospital.FullName.Trim()).FirstOrDefault();
                 if (checkTitle == null)
                 {
-                    var user = new UserTable();
-                    user.UserName = reigstrationMV.User.UserName;
-                    user.Password = reigstrationMV.User.Password;
-                    user.EmailAddress = reigstrationMV.User.EmailAddress;
-                    user.AccountStatusID = 1;
-                    user.UserTypeID = reigstrationMV.UserTypeID;
-                    user.Description = reigstrationMV.User.Description;
-                    DB.UserTables.Add(user);
+                    using (var transaction = DB.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            var user = new UserTable();
+                            user.UserName = reigstrationMV.User.UserName;
+                            user.Password = reigstrationMV.User.Password;
+                            user.EmailAddress = reigstrationMV.User.EmailAddress;
+                            user.AccountStatusID = 1;
+                            user.UserTypeID = reigstrationMV.UserTypeID;
+                            user.Description = reigstrationMV.User.Description;
+                            DB.UserTables.Add(user);
 
-                    var hospital = new HospitalTable();
-                    hospital.FullName = reigstrationMV.Hospital.FullName;
-                    hospital.Address = reigstrationMV.Hospital.Address;
-                    hospital.PhoneNo = reigstrationMV.Hospital.PhoneNo;
-                    hospital.WebSite = reigstrationMV.Hospital.WebSite;
-                    hospital.Email = reigstrationMV.Hospital.Email;
-                    hospital.Location = reigstrationMV.Hospital.Address;
-                    hospital.CityID = reigstrationMV.CityID;
-                    hospital.UserID = user.UserID;
-                    DB.HospitalTables.Add(hospital);
-                    
-                    DB.SaveChanges();
-                    return RedirectToAction("MainHome", "Home");
+                            var hospital = new HospitalTable();
+                            hospital.FullName = reigstrationMV.Hospital.FullName;
+                            hospital.Address = reigstrationMV.Hospital.Address;
+                            hospital.PhoneNo = reigstrationMV.Hospital.PhoneNo;
+                            hospital.WebSite = reigstrationMV.Hospital.WebSite;
+                            hospital.Email = reigstrationMV.Hospital.Email;
+                            hospital.Location = reigstrationMV.Hospital.Address;
+                            hospital.CityID = reigstrationMV.CityID;
+                            hospital.UserID = user.UserID;
+                            DB.HospitalTables.Add(hospital);
+
+                            DB.SaveChanges();
+                            transaction.Commit();
+                            ViewData["Message"] = "Thanks for registration! Your query will be review shortly!";
+                            return RedirectToAction("MainHome", "Home");
+                        }
+                        catch 
+                        {
+                            ModelState.AddModelError(string.Empty, "Please Provide Correct Details");
+                            transaction.Rollback();
+                        }
+                    }
+                } 
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Hospital Already Registered");
                 }
             }
 
