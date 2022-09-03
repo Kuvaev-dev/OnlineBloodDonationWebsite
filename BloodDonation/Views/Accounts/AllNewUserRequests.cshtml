@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DatabaseLayer.UserTable>
+@{ 
+    ViewBag.Title = "All New User Requests";
+}
+
+<div class="col-md-12">
+    <div class="contact-form-block">
+        <h2 class="contact-title">All New User Requests</h2>
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    Relationship
+                </th>
+                <th>
+                    User Name
+                </th>
+                <th>
+                    Email Address
+                </th>
+                <th>
+                    Message
+                </th>
+                <th>
+                    Account Status
+                </th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserTypeTable.UserType)
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.UserName, "UserDetails", new { id = item.UserID })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountStatusTable.AccountStatus)
+                    </td>
+                    <td class="btn-group">
+                        @Html.ActionLink("Approved", "UserApproved", new { id = item.UserID }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Rejected", "UserRejected", new { id = item.UserID }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
