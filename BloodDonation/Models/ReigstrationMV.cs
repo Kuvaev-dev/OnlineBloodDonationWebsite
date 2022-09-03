@@ -5,7 +5,7 @@ using System.Web;
 
 namespace BloodDonation.Models
 {
-    public class ReigstrationMV
+    public class RegistrationMV
     {
         public int UserTypeID { get; set; }
         public string ContactNo { get; set; }
@@ -18,7 +18,7 @@ namespace BloodDonation.Models
         public DonorMV Donor { get; set; }
         public UserMV User { get; set; }
 
-        public ReigstrationMV()
+        public RegistrationMV()
         {
             Seeker = new SeekerMV();
             Hospital = new HospitalMV();

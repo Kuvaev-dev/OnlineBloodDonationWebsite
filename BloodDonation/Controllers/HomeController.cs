@@ -22,7 +22,7 @@ namespace BloodDonation.Controllers
         {
             var message = ViewData["Message"] == null ? "Welcome To Online Blood Donation Website" : ViewData["Message"];
             ViewData["Message"] = message;
-            var registrationMV = new ReigstrationMV();
+            var registrationMV = new RegistrationMV();
             ViewBag.UserTypeID = new SelectList(DB.UserTypeTables.Where(ut => ut.UserTypeID > 1).ToList(), "UserTypeID", "UserType", "0");
             ViewBag.CityID = new SelectList(DB.CityTables.ToList(), "CityID", "City", "0");
             return View(registrationMV);
