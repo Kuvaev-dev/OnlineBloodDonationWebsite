@@ -4,46 +4,52 @@
 }
 
 <div class="appointment-form-wrapper theme-custom-box-shadow text-center clearfix wow zoomIn">
-    <h3 class="join-heading join-heading-alt">Donor Reigstration Form</h3>
+    <h3 class="join-heading join-heading-alt">Donor Registration Form</h3>
     @using (Html.BeginForm("DonorUser", "Registration", FormMethod.Post, new { @class = "appoinment-form" }))
     {
         @Html.AntiForgeryToken()
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserTypeID)
+        @Html.HiddenFor(model => model.User.UserID)
+        @Html.HiddenFor(model => model.User.UserName)
+        @Html.HiddenFor(model => model.User.Password)
+        @Html.HiddenFor(model => model.User.AccountStatus)
+        @Html.HiddenFor(model => model.User.AccountStatusID)
+        @Html.HiddenFor(model => model.User.Description)
+        @Html.HiddenFor(model => model.User.EmailAddress)
+
         <div class="form-group col-md-6">
-            @Html.EditorFor(model => model.User.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "User Name", @type = "text" } })
-            @Html.ValidationMessageFor(model => model.User.UserName, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Donor.FullName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Full Name", @type = "text" } })
+            @Html.ValidationMessageFor(model => model.Donor.FullName, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
-            @Html.EditorFor(model => model.User.EmailAddress, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email Address", @type = "email" } })
-            @Html.ValidationMessageFor(model => model.User.EmailAddress, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Donor.ContactNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone №" } })
+            @Html.ValidationMessageFor(model => model.Donor.ContactNo, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
-            @Html.EditorFor(model => model.User.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", @type = "password" } })
-            @Html.ValidationMessageFor(model => model.User.Password, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Donor.CNIC, new { htmlAttributes = new { @class = "form-control", @placeholder = "CNIC", @type = "number" } })
+            @Html.ValidationMessageFor(model => model.Donor.CNIC, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
             <div class="select-style">
-                @Html.DropDownList("UserTypeID", null, "-- Relationship", new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UserTypeID, "", new { @class = "text-danger" })
+                @Html.DropDownList("BloodGroupID", null, "-- Your Blood Group", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BloodGroupID, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group col-md-6">
-            @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contact №" } })
-            @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })
-        </div>
-
         <div class="form-group col-md-6">
             <div class="select-style">
                 @Html.DropDownList("CityID", null, "-- Your City", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group col-md-12 col-sm-12 col-xs-12">
-            @Html.TextAreaFor(model => model.User.Description, 4, 12, new { @class = "form-control", @placeholder = "Your Message" })
-            @Html.ValidationMessageFor(model => model.User.Description, "", new { @class = "text-danger" })
+        <div class="form-group col-md-6">
+            @Html.EditorFor(model => model.Donor.LastDonationDate, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Donation Date" } })
+            @Html.ValidationMessageFor(model => model.Donor.LastDonationDate, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            @Html.EditorFor(model => model.Donor.Location, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address", @type = "text" } })
+            @Html.ValidationMessageFor(model => model.Donor.Location, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group col-md-12 col-sm-12 col-xs-12">

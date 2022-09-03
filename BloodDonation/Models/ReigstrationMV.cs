@@ -10,6 +10,7 @@ namespace BloodDonation.Models
         public int UserTypeID { get; set; }
         public string ContactNo { get; set; }
         public int CityID { get; set; }
+        public int BloodGroupID { get; set; }
         public SeekerMV Seeker { get; set; }
         public HospitalMV Hospital { get; set; }
         public BloodBankMV BloodBank { get; set; }
