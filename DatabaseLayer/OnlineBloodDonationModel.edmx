@@ -121,6 +121,7 @@
           <Property Name="GenderID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
           <Property Name="RegistrationDate" Type="date" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" Nullable="false" />
         </EntityType>
         <EntityType Name="UserTable">
           <Key>
@@ -539,6 +540,7 @@
           <NavigationProperty Name="UserTable" Relationship="db_a8c2c8_blooddonationModel.FK_SeekerTable_UserTable" FromRole="SeekerTable" ToRole="UserTable" />
           <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="GenderTable" Relationship="db_a8c2c8_blooddonationModel.FK_SeekerTable_GenderTable" FromRole="SeekerTable" ToRole="GenderTable" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_BloodBankStockTable_BloodBankTable">
           <End Role="BloodBankTable" Type="Self.BloodBankTable" Multiplicity="1" />
@@ -978,6 +980,7 @@
           <EntitySetMapping Name="SeekerTables">
             <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.SeekerTable">
               <MappingFragment StoreEntitySet="SeekerTable">
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="SeekerID" ColumnName="SeekerID" />

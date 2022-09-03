@@ -20,26 +20,32 @@
         @Html.HiddenFor(model => model.User.EmailAddress)
 
         <div class="form-group col-md-6">
+            <label style="float: left">Enter Blood Bank Name:</label>
             @Html.EditorFor(model => model.BloodBank.BloodBankName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Blood Bank Name", @type = "text" } })
             @Html.ValidationMessageFor(model => model.BloodBank.BloodBankName, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
+            <label style="float: left">Enter Blood Phone №:</label>
             @Html.EditorFor(model => model.BloodBank.PhoneNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone №" } })
             @Html.ValidationMessageFor(model => model.BloodBank.PhoneNo, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
+            <label style="float: left">Enter Blood Bank Email:</label>
             @Html.EditorFor(model => model.BloodBank.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email Address", @type = "email" } })
             @Html.ValidationMessageFor(model => model.BloodBank.Email, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
+            <label style="float: left">Enter Blood Bank Website:</label>
             @Html.EditorFor(model => model.BloodBank.WebSite, new { htmlAttributes = new { @class = "form-control", @placeholder = "Website (http://www.example.com)", @type = "url" } })
             @Html.ValidationMessageFor(model => model.BloodBank.WebSite, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
+            <label style="float: left">Enter Blood Bank Location:</label>
             @Html.EditorFor(model => model.BloodBank.Location, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address", @type = "text" } })
             @Html.ValidationMessageFor(model => model.BloodBank.Location, "", new { @class = "text-danger" })
         </div>
         <div class="form-group col-md-6">
+            <label style="float: left">Select Blood Bank City:</label>
             <div class="select-style">
                 @Html.DropDownList("CityID", null, "-- Your City", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })

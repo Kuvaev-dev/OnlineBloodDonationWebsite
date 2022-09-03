@@ -24,6 +24,7 @@ namespace DatabaseLayer
         public int GenderID { get; set; }
         public int UserID { get; set; }
         public System.DateTime RegistrationDate { get; set; }
+        public string Address { get; set; }
     
         public virtual BloodGroupTable BloodGroupTable { get; set; }
         public virtual CityTable CityTable { get; set; }

@@ -1,7 +1,73 @@
-﻿
+﻿@model BloodDonation.Models.RegistrationMV
 @{
-    ViewBag.Title = "Seeker User";
+    ViewBag.Title = "Seeker Registration";
 }
 
-<h2>Seeker User</h2>
+<div class="appointment-form-wrapper theme-custom-box-shadow text-center clearfix wow zoomIn">
+    <h3 class="join-heading join-heading-alt">Seeker Registration Form</h3>
+    @using (Html.BeginForm("SeekerUser", "Registration", FormMethod.Post, new { @class = "appoinment-form" }))
+    {
+        @Html.AntiForgeryToken()
 
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.UserTypeID)
+        @Html.HiddenFor(model => model.User.UserID)
+        @Html.HiddenFor(model => model.User.UserName)
+        @Html.HiddenFor(model => model.User.Password)
+        @Html.HiddenFor(model => model.User.AccountStatus)
+        @Html.HiddenFor(model => model.User.AccountStatusID)
+        @Html.HiddenFor(model => model.User.Description)
+        @Html.HiddenFor(model => model.User.EmailAddress)
+
+        <div class="form-group col-md-6">
+            <label style="float: left">Enter Seeker Full Name:</label>
+            @Html.EditorFor(model => model.Seeker.FullName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Full Name", @type = "text" } })
+            @Html.ValidationMessageFor(model => model.Seeker.FullName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            <label style="float: left">Enter Seeker Age:</label>
+            @Html.EditorFor(model => model.Seeker.Age, new { htmlAttributes = new { @class = "form-control", @type = "text" } })
+            @Html.ValidationMessageFor(model => model.Seeker.Age, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            <label style="float: left">Enter Seeker Contact Number:</label>
+            @Html.EditorFor(model => model.Seeker.ContactNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contact №", @type = "text" } })
+            @Html.ValidationMessageFor(model => model.Seeker.ContactNo, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            <label style="float: left">Enter Seeker CNIC:</label>
+            @Html.EditorFor(model => model.Seeker.CNIC, new { htmlAttributes = new { @class = "form-control", @placeholder = "CNIC", @type = "text" } })
+            @Html.ValidationMessageFor(model => model.Seeker.CNIC, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group col-md-6">
+            <label style="float: left">Select Seeker Gender:</label>
+            <div class="select-style">
+                @Html.DropDownList("GenderID", null, "-- Gender", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GenderID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label style="float: left">Select Seeker Blood Group:</label>
+            <div class="select-style">
+                @Html.DropDownList("BloodGroupID", null, "-- Your Blood Group", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BloodGroupID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label style="float: left">Select Seeker City:</label>
+            <div class="select-style">
+                @Html.DropDownList("CityID", null, "-- Your City", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label style="float: left">Enter Seeker Address:</label>
+            @Html.EditorFor(model => model.Seeker.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address", @type = "text" } })
+            @Html.ValidationMessageFor(model => model.Seeker.Address, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-12 col-sm-12 col-xs-12">
+            <button id="btn_submit" class="btn btn-theme" type="submit">Submit</button>
+        </div>
+    }
+</div> <!-- end .appointment-form-wrapper  -->
