@@ -26,12 +26,20 @@ namespace BloodDonation.Controllers
 
         public ActionResult UserApproved(int? id)
         {
-            return View();
+            var user = DB.UserTables.Find(id);
+            user.AccountStatusID = 2;
+            DB.Entry(user).State = System.Data.Entity.EntityState.Modified;
+            DB.SaveChanges();
+            return RedirectToAction("AllNewUserRequests");
         }
 
-        public ActionResult UserRejected()
+        public ActionResult UserRejected(int? id)
         {
-            return View();
+            var user = DB.UserTables.Find(id);
+            user.AccountStatusID = 3;
+            DB.Entry(user).State = System.Data.Entity.EntityState.Modified;
+            DB.SaveChanges();
+            return RedirectToAction("AllNewUserRequests");
         }
     }
 }
