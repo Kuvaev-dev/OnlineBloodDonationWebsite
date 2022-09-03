@@ -106,6 +106,7 @@ namespace BloodDonation.Controllers
         {
             ViewBag.CityID = new SelectList(DB.CityTables.ToList(), "CityID", "City", registrationmv.CityID);
             ViewBag.BloodGroupID = new SelectList(DB.BloodGroupTables.ToList(), "BloodGroupID", "BloodGroup", registrationmv.BloodGroupID);
+            ViewBag.GenderID = new SelectList(DB.GenderTables.ToList(), "GenderID", "Gender", "0");
             return View(registrationmv);
         }
 
@@ -140,6 +141,7 @@ namespace BloodDonation.Controllers
                             donor.ContactNo = reigstrationMV.Donor.ContactNo;
                             donor.LastDonationDate = reigstrationMV.Donor.LastDonationDate;
                             donor.CNIC = reigstrationMV.Donor.CNIC;
+                            donor.GenderID = reigstrationMV.GenderID;
                             donor.CityID = reigstrationMV.CityID;
                             donor.UserID = user.UserID;
                             DB.DonorTables.Add(donor);

@@ -27,7 +27,7 @@ namespace DatabaseLayer
     
         public virtual BloodGroupTable BloodGroupTable { get; set; }
         public virtual CityTable CityTable { get; set; }
-        public virtual GenderTable GenderTable { get; set; }
         public virtual UserTable UserTable { get; set; }
+        public virtual GenderTable GenderTable { get; set; }
     }
 }

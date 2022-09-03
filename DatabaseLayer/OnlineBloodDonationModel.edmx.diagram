@@ -9,8 +9,6 @@
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodBankTable" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodGroupTable" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.CityTable" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.DonorTable" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.GenderTable" Width="1.5" PointX="5.75" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.HospitalTable" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.RequestTable" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.RequestTypeTable" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
@@ -18,22 +16,25 @@
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockTable_BloodBankTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockTable_BloodGroupTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankTable_CityTable" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_BloodGroupTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_BloodGroupTable" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_CityTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_HospitalTable_CityTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_CityTable" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_GenderTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_RequestTable_RequestTypeTable" ManuallyRouted="false" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.AccountStatusTable" Width="1.5" PointX="10" PointY="10.75" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.UserTable" Width="1.5" PointX="12.25" PointY="9.875" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.UserTypeTable" Width="1.5" PointX="10" PointY="13.75" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_UserTable_AccountStatusTable" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankTable_UserTable" />
-        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_UserTable" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_HospitalTable_UserTable" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_UserTable" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_UserTable_UserTypeTable" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.DonorTable" Width="1.5" PointX="14.5" PointY="6" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.GenderTable" Width="1.5" PointX="5.75" PointY="9" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_BloodGroupTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_CityTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_GenderTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_UserTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_GenderTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

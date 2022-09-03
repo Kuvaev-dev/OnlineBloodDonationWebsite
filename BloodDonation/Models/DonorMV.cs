@@ -10,6 +10,7 @@ namespace BloodDonation.Models
     {
         public int DonorID { get; set; }
         public string FullName { get; set; }
+        public int GenderID { get; set; }
         public int BloodGroupID { get; set; }
         public string BloodGroup { get; set; }
         [DataType(DataType.Date)]
