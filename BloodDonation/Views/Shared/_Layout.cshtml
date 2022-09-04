@@ -49,6 +49,15 @@
                             <a href="#"><i class="fa fa-google-plus rounded-box"></i></a>
                             <a href="#"><i class="fa fa-instagram rounded-box"></i></a>
                             <a href="#"><i class="fa fa-youtube rounded-box"></i></a>
+
+                            @if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+                            {
+                                @Html.ActionLink("Sign In", "Login", "Home", null, new { @class = "btn btn-theme btn-theme" })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Sign Out", "Logout", "Home", null, new { @class = "btn btn-theme btn-theme" })
+                            }
                         </div>
                     </div>
                 </div>

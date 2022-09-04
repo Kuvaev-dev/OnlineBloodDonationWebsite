@@ -69,7 +69,7 @@ namespace BloodDonation.Controllers
 
                         if (user.UserTypeID == 1) // Admin
                         {
-
+                            return RedirectToAction("MainHome");
                         }
                         else if (user.UserTypeID == 2) // Donor
                         {
@@ -87,6 +87,8 @@ namespace BloodDonation.Controllers
                                 Session["Location"] = donor.Location;
                                 Session["CityID"] = donor.CityID;
                                 Session["City"] = donor.CityTable.City;
+
+                                return RedirectToAction("MainHome");
                             }
                             else
                             {
@@ -111,6 +113,8 @@ namespace BloodDonation.Controllers
                                 Session["Gender"] = seeker.GenderTable.Gender;
                                 Session["RegistrationDate"] = seeker.RegistrationDate;
                                 Session["Address"] = seeker.Address;
+
+                                return RedirectToAction("MainHome");
                             }
                             else
                             {
@@ -131,6 +135,8 @@ namespace BloodDonation.Controllers
                                 Session["Location"] = hospital.Location;
                                 Session["CityID"] = hospital.CityID;
                                 Session["City"] = hospital.CityTable.City;
+
+                                return RedirectToAction("MainHome");
                             }
                             else
                             {
@@ -151,6 +157,8 @@ namespace BloodDonation.Controllers
                                 Session["Email"] = bloodBank.Email;
                                 Session["CityID"] = bloodBank.CityID;
                                 Session["City"] = bloodBank.CityTable.City;
+
+                                return RedirectToAction("MainHome");
                             }
                             else
                             {

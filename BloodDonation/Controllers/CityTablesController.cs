@@ -17,12 +17,22 @@ namespace BloodDonation.Controllers
         // GET: CityTables
         public ActionResult Index()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             return View(db.CityTables.ToList());
         }
 
         // GET: CityTables/Create
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             var city = new CityTable();
             return View(city);
         }
@@ -34,6 +44,11 @@ namespace BloodDonation.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CityID,City")] CityTable cityTable)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             if (ModelState.IsValid)
             {
                 db.CityTables.Add(cityTable);
@@ -47,6 +62,11 @@ namespace BloodDonation.Controllers
         // GET: CityTables/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -66,6 +86,11 @@ namespace BloodDonation.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CityID,City")] CityTable cityTable)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Entry(cityTable).State = EntityState.Modified;
@@ -78,6 +103,11 @@ namespace BloodDonation.Controllers
         // GET: CityTables/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -95,6 +125,11 @@ namespace BloodDonation.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             CityTable cityTable = db.CityTables.Find(id);
             db.CityTables.Remove(cityTable);
             db.SaveChanges();
