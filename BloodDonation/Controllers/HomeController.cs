@@ -69,7 +69,7 @@ namespace BloodDonation.Controllers
 
                         if (user.UserTypeID == 1) // Admin
                         {
-                            return RedirectToAction("MainHome");
+                            return RedirectToAction("AllNewUserRequests", "Accounts");
                         }
                         else if (user.UserTypeID == 2) // Donor
                         {
