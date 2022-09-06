@@ -111,19 +111,27 @@ namespace BloodDonation.Controllers
                 userProfile.GenderID = donor.GenderID;
             }
 
-            return View(user);
+            ViewBag.CityID = new SelectList(DB.CityTables.ToList(), "CityID", "City", userProfile.CityID);
+            ViewBag.BloodGroupID = new SelectList(DB.BloodGroupTables.ToList(), "BloodGroupID", "BloodGroup", userProfile.BloodGroupID);
+            ViewBag.GenderID = new SelectList(DB.GenderTables.ToList(), "GenderID", "Gender", userProfile.GenderID);
+            
+            return View(userProfile);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditUserProfile(RegistrationMV registrationMV)
+        public ActionResult EditUserProfile(RegistrationMV userProfile)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
 
-            return View(registrationMV);
+            ViewBag.CityID = new SelectList(DB.CityTables.ToList(), "CityID", "City", userProfile.CityID);
+            ViewBag.BloodGroupID = new SelectList(DB.BloodGroupTables.ToList(), "BloodGroupID", "BloodGroup", userProfile.BloodGroupID);
+            ViewBag.GenderID = new SelectList(DB.GenderTables.ToList(), "GenderID", "Gender", userProfile.GenderID);
+
+            return View(userProfile);
         }
     }
 }
