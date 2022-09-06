@@ -127,6 +127,89 @@ namespace BloodDonation.Controllers
                 return RedirectToAction("Login", "Home");
             }
 
+            if (ModelState.IsValid)
+            {
+                var checkEmailAddress = DB.UserTables.Where(u => u.EmailAddress == userProfile.User.EmailAddress &&
+                                                                 u.UserID != userProfile.User.UserID).FirstOrDefault();
+                if (checkEmailAddress == null)
+                {
+                    try
+                    {
+                        var user = DB.UserTables.Find(userProfile.User.UserID);
+                        user.EmailAddress = userProfile.User.EmailAddress;
+                        DB.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                        DB.SaveChanges();
+
+                        if (userProfile.Donor.DonorID > 0)
+                        {
+                            var donor = DB.DonorTables.Find(userProfile.Donor.DonorID);
+                            donor.FullName = userProfile.Donor.FullName;
+                            donor.BloodGroupID = userProfile.BloodGroupID;
+                            donor.GenderID = userProfile.GenderID;
+                            donor.ContactNo = userProfile.Donor.ContactNo;
+                            donor.CNIC = userProfile.Donor.CNIC;
+                            donor.CityID = userProfile.CityID;
+                            donor.Location = userProfile.Donor.Location;
+                            DB.Entry(donor).State = System.Data.Entity.EntityState.Modified;
+                            DB.SaveChanges();
+                        }
+                        else if (userProfile.Seeker.SeekerID > 0)
+                        {
+                            var seeker = DB.SeekerTables.Find(userProfile.Seeker.SeekerID);
+                            seeker.FullName = userProfile.Seeker.FullName;
+                            seeker.BloodGroupID = userProfile.BloodGroupID;
+                            seeker.GenderID = userProfile.GenderID;
+                            seeker.Age = userProfile.Seeker.Age;
+                            seeker.ContactNo = userProfile.Seeker.ContactNo;
+                            seeker.CNIC = userProfile.Seeker.CNIC;
+                            seeker.CityID = userProfile.Seeker.CityID;
+                            seeker.Address = userProfile.Seeker.Address;
+                            DB.Entry(seeker).State = System.Data.Entity.EntityState.Modified;
+                            DB.SaveChanges();
+                        }
+                        else if (userProfile.BloodBank.BloodBankID > 0)
+                        {
+                            var bloodBank = DB.BloodBankTables.Find(userProfile.BloodBank.BloodBankID);
+                            bloodBank.BloodBankName = userProfile.BloodBank.BloodBankName;
+                            bloodBank.PhoneNo = userProfile.BloodBank.PhoneNo;
+                            bloodBank.Email = userProfile.BloodBank.Email;
+                            bloodBank.WebSite = userProfile.BloodBank.WebSite;
+                            bloodBank.CityID = userProfile.CityID;
+                            bloodBank.Address = userProfile.BloodBank.Address;
+                            DB.Entry(bloodBank).State = System.Data.Entity.EntityState.Modified;
+                            DB.SaveChanges();
+                        }
+                        else if (userProfile.Hospital.HospitalID > 0)
+                        {
+                            var hospital = DB.HospitalTables.Find(userProfile.Hospital.HospitalID);
+                            hospital.FullName = userProfile.Hospital.FullName;
+                            hospital.PhoneNo = userProfile.Hospital.PhoneNo;
+                            hospital.Email = userProfile.Hospital.Email;
+                            hospital.WebSite = userProfile.Hospital.WebSite;
+                            hospital.CityID = userProfile.CityID;
+                            hospital.Address = userProfile.Hospital.Address;
+                            DB.Entry(hospital).State = System.Data.Entity.EntityState.Modified;
+                            DB.SaveChanges();
+                        }
+
+                        return RedirectToAction("UserProfile", "User", new { id = userProfile.User.UserID });
+                    }
+                    catch
+                    {
+                        ModelState.AddModelError(string.Empty, "User Email is Already Exist");
+                    }
+                } 
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "User Email is Already Exist");
+                    return View(userProfile);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Some Data is Incorrect. Please Provide Correct Details");
+            }
+
             ViewBag.CityID = new SelectList(DB.CityTables.ToList(), "CityID", "City", userProfile.CityID);
             ViewBag.BloodGroupID = new SelectList(DB.BloodGroupTables.ToList(), "BloodGroupID", "BloodGroup", userProfile.BloodGroupID);
             ViewBag.GenderID = new SelectList(DB.GenderTables.ToList(), "GenderID", "Gender", userProfile.GenderID);

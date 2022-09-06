@@ -4,7 +4,20 @@
     ViewBag.Title = "Edit Profile";
 }
 
-<div class="col-md-12">
+<style>
+    dt {
+        float: left;
+        clear: left;
+        width: 8em;
+    }
+
+    dd {
+        margin: 0 0 0 9em;
+        padding: 0 0 2.5em 0;
+    }
+</style>
+
+<div class="col-md-8">
     <div class="contact-form-block">
         <h2 class="contact-title">Update Profile</h2>
         @using (Html.BeginForm("EditUserProfile", "User", FormMethod.Post))
@@ -12,6 +25,14 @@
             @Html.AntiForgeryToken()
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            @Html.HiddenFor(model => model.UserTypeID);
+            @Html.HiddenFor(model => model.User.UserID);
+            @Html.HiddenFor(model => model.Donor.DonorID);
+            @Html.HiddenFor(model => model.Seeker.SeekerID);
+            @Html.HiddenFor(model => model.Hospital.HospitalID);
+            @Html.HiddenFor(model => model.BloodBank.BloodBankID);
+
             <div class="row">
                 <h4 class="col-md-4">Edit User Details</h4>
                 <div class="col-md-8" align="right">
