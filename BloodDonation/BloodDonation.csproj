@@ -325,6 +325,7 @@
     <Content Include="Views\Dashboard\Seeker.cshtml" />
     <Content Include="Views\Dashboard\Hospital.cshtml" />
     <Content Include="Views\Dashboard\BloodBank.cshtml" />
+    <Content Include="Views\User\EditUserProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
