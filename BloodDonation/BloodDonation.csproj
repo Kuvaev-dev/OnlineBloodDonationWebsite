@@ -231,6 +231,7 @@
     <Compile Include="Controllers\AccountStatusController.cs" />
     <Compile Include="Controllers\BloodGroupController.cs" />
     <Compile Include="Controllers\CityTablesController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\RequestTypeController.cs" />
@@ -320,6 +321,10 @@
     <Content Include="Views\Accounts\UserDetails.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\User\UserProfile.cshtml" />
+    <Content Include="Views\Dashboard\Donor.cshtml" />
+    <Content Include="Views\Dashboard\Seeker.cshtml" />
+    <Content Include="Views\Dashboard\Hospital.cshtml" />
+    <Content Include="Views\Dashboard\BloodBank.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
