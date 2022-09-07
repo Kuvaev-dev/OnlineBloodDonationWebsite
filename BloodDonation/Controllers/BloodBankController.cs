@@ -40,5 +40,15 @@ namespace BloodDonation.Controllers
 
             return View(bloodBankStockList);
         }
+
+        public ActionResult NewCampaign()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            return View();
+        }
     }
 }

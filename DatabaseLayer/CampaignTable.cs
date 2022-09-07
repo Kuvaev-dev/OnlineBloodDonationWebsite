@@ -12,30 +12,26 @@ namespace DatabaseLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class BloodBankTable
+    public partial class CampaignTable
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public BloodBankTable()
+        public CampaignTable()
         {
-            this.BloodBankStockTables = new HashSet<BloodBankStockTable>();
-            this.CampaignTables = new HashSet<CampaignTable>();
+            this.BloodBankStockDetailTables = new HashSet<BloodBankStockDetailTable>();
         }
     
+        public int CampaignID { get; set; }
         public int BloodBankID { get; set; }
-        public string BloodBankName { get; set; }
-        public string Address { get; set; }
-        public string PhoneNo { get; set; }
+        public System.DateTime CampaignDate { get; set; }
+        public System.TimeSpan StartTime { get; set; }
+        public System.TimeSpan EndTime { get; set; }
         public string Location { get; set; }
-        public string WebSite { get; set; }
-        public string Email { get; set; }
-        public int CityID { get; set; }
-        public int UserID { get; set; }
+        public string CampaignDetails { get; set; }
+        public string CampaignTitle { get; set; }
+        public string CampaignPhoto { get; set; }
     
+        public virtual BloodBankTable BloodBankTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BloodBankStockTable> BloodBankStockTables { get; set; }
-        public virtual CityTable CityTable { get; set; }
-        public virtual UserTable UserTable { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CampaignTable> CampaignTables { get; set; }
+        public virtual ICollection<BloodBankStockDetailTable> BloodBankStockDetailTables { get; set; }
     }
 }

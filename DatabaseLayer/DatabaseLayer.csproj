@@ -65,6 +65,9 @@
     <Compile Include="BloodGroupTable.cs">
       <DependentUpon>OnlineBloodDonationModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="CampaignTable.cs">
+      <DependentUpon>OnlineBloodDonationModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CityTable.cs">
       <DependentUpon>OnlineBloodDonationModel.tt</DependentUpon>
     </Compile>

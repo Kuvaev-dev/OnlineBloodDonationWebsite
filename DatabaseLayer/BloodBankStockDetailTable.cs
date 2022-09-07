@@ -17,12 +17,14 @@ namespace DatabaseLayer
         public int BloodBankStockDetailID { get; set; }
         public int BloodBankStockID { get; set; }
         public int BloodGroupID { get; set; }
+        public int CampaignID { get; set; }
         public double Quantity { get; set; }
         public int DonorID { get; set; }
         public System.DateTime DonateDateTime { get; set; }
     
         public virtual BloodBankStockTable BloodBankStockTable { get; set; }
         public virtual BloodGroupTable BloodGroupTable { get; set; }
+        public virtual CampaignTable CampaignTable { get; set; }
         public virtual DonorTable DonorTable { get; set; }
     }
 }
