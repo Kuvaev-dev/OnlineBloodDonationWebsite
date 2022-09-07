@@ -14,6 +14,12 @@ namespace DatabaseLayer
     
     public partial class DonorTable
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DonorTable()
+        {
+            this.BloodBankStockDetailTables = new HashSet<BloodBankStockDetailTable>();
+        }
+    
         public int DonorID { get; set; }
         public string FullName { get; set; }
         public int BloodGroupID { get; set; }
@@ -29,5 +35,7 @@ namespace DatabaseLayer
         public virtual CityTable CityTable { get; set; }
         public virtual GenderTable GenderTable { get; set; }
         public virtual UserTable UserTable { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BloodBankStockDetailTable> BloodBankStockDetailTables { get; set; }
     }
 }

@@ -35,6 +35,10 @@
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_GenderTable" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_DonorTable_UserTable" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_GenderTable" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodBankStockDetailTable" Width="1.5" PointX="16.75" PointY="4.75" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockDetailTable_BloodBankStockTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockDetailTable_BloodGroupTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockDetailTable_DonorTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

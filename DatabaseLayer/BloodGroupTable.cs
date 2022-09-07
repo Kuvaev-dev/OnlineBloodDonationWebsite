@@ -20,6 +20,7 @@ namespace DatabaseLayer
             this.BloodBankStockTables = new HashSet<BloodBankStockTable>();
             this.SeekerTables = new HashSet<SeekerTable>();
             this.DonorTables = new HashSet<DonorTable>();
+            this.BloodBankStockDetailTables = new HashSet<BloodBankStockDetailTable>();
         }
     
         public int BloodGroupID { get; set; }
@@ -31,5 +32,7 @@ namespace DatabaseLayer
         public virtual ICollection<SeekerTable> SeekerTables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonorTable> DonorTables { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BloodBankStockDetailTable> BloodBankStockDetailTables { get; set; }
     }
 }
