@@ -110,6 +110,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\CampaignPhoto\testlogo.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Template\css\animate.css" />
     <Content Include="Content\Template\css\bootstrap-rtl.min.css" />
@@ -245,6 +246,7 @@
     <Compile Include="Models\BloodBankMV.cs" />
     <Compile Include="Models\BloodBankStockMV.cs" />
     <Compile Include="Models\BloodGroupsMV.cs" />
+    <Compile Include="Models\CampaignMV.cs" />
     <Compile Include="Models\DonorMV.cs" />
     <Compile Include="Models\HospitalMV.cs" />
     <Compile Include="Models\ReigstrationMV.cs" />
@@ -329,6 +331,8 @@
     <Content Include="Views\Dashboard\BloodBank.cshtml" />
     <Content Include="Views\User\EditUserProfile.cshtml" />
     <Content Include="Views\BloodBank\BloodBankStock.cshtml" />
+    <Content Include="Views\BloodBank\NewCampaign.cshtml" />
+    <Content Include="Views\BloodBank\AllCampaigns.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

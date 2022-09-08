@@ -41,6 +41,20 @@ namespace BloodDonation.Controllers
             return View(bloodBankStockList);
         }
 
+        public ActionResult AllCampaigns()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            int bloodBankID = 0;
+            int.TryParse(Convert.ToString(Session["BloodBankID"]), out bloodBankID);
+            var allCampaigns = DB.CampaignTables.Where(c => c.BloodBankID == bloodBankID);
+
+            return View(allCampaigns);
+        }
+
         public ActionResult NewCampaign()
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
@@ -48,7 +62,42 @@ namespace BloodDonation.Controllers
                 return RedirectToAction("Login", "Home");
             }
 
-            return View();
+            var campaignMV = new CampaignMV();
+
+            return View(campaignMV);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NewCampaign(CampaignMV campaignMV)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            int bloodBankID = 0;
+            int.TryParse(Convert.ToString(Session["BloodBankID"]), out bloodBankID);
+
+            campaignMV.BloodBankID = bloodBankID;
+            
+            if (ModelState.IsValid)
+            {
+                var campaign = new CampaignTable();
+                campaign.BloodBankID = bloodBankID;
+                campaign.CampaignDate = campaignMV.CampaignDate;
+                campaign.StartTime = campaignMV.StartTime;
+                campaign.EndTime = campaignMV.EndTime;
+                campaign.Location = campaignMV.Location;
+                campaign.CampaignDetails = campaignMV.CampaignDetails;
+                campaign.CampaignTitle = campaignMV.CampaignTitle;
+                campaign.CampaignPhoto = "~/Content/CampaignPhoto/testlogo.jpg";
+                DB.CampaignTables.Add(campaign);
+                DB.SaveChanges();
+                return RedirectToAction("AllCampaigns");
+            }
+
+            return View(campaignMV);
         }
     }
 }
