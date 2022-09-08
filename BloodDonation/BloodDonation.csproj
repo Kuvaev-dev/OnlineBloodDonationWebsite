@@ -242,6 +242,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Models\AccountStatusMV.cs" />
     <Compile Include="Models\BloodBankMV.cs" />
     <Compile Include="Models\BloodBankStockMV.cs" />

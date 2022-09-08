@@ -1,4 +1,5 @@
-﻿using BloodDonation.Models;
+﻿using BloodDonation.Helpers;
+using BloodDonation.Models;
 using DatabaseLayer;
 using System;
 using System.Collections.Generic;
@@ -94,6 +95,22 @@ namespace BloodDonation.Controllers
                 campaign.CampaignPhoto = "~/Content/CampaignPhoto/testlogo.jpg";
                 DB.CampaignTables.Add(campaign);
                 DB.SaveChanges();
+
+                if (campaignMV.CampaignPhotoFile != null)
+                {
+                    var folder = "~/Content/CampaignPhoto";
+                    var file = string.Format("{0}.jpg", campaignMV.CampaignID);
+                    var response = FileHelper.UploadPhoto(campaignMV.CampaignPhotoFile, folder, file);
+
+                    if (response)
+                    {
+                        var picture = string.Format("{0}/{1}", folder, file);
+                        campaign.CampaignPhoto = picture;
+                        DB.Entry(campaign).State = System.Data.Entity.EntityState.Modified;
+                        DB.SaveChanges();
+                    }
+                }
+
                 return RedirectToAction("AllCampaigns");
             }
 
