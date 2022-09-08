@@ -248,6 +248,8 @@
     <Compile Include="Models\BloodBankStockMV.cs" />
     <Compile Include="Models\BloodGroupsMV.cs" />
     <Compile Include="Models\CampaignMV.cs" />
+    <Compile Include="Models\CollectedBloodDonorDetailMV.cs" />
+    <Compile Include="Models\CollectBloodMV.cs" />
     <Compile Include="Models\DonorMV.cs" />
     <Compile Include="Models\HospitalMV.cs" />
     <Compile Include="Models\ReigstrationMV.cs" />
@@ -335,6 +337,7 @@
     <Content Include="Views\BloodBank\NewCampaign.cshtml" />
     <Content Include="Views\BloodBank\AllCampaigns.cshtml" />
     <Content Include="Views\Home\AllCampaigns.cshtml" />
+    <Content Include="Views\Accounts\AddNewDonorByBloodBank.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

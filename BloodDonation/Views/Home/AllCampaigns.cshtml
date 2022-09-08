@@ -179,31 +179,44 @@
                 </div> <!-- end .col-sm-12  -->
             </div> <!-- end .row  -->
 
-            <div class="row margin-top-48">
-                @foreach (var item in Model)
-                {
-                    <div class="col-md-6 col-sm-12">
-                        <div class="event-layout-1 theme-custom-box-shadow clearfix">
-                            <figure class="event-img">
-                                <a href="#">
-                                    <img src="@Url.Content(item.CampaignPhoto)" alt="">
-                                </a>
-                            </figure>
-                            <div class="event-info">
-                                <a class="event-date" href="#"><i class="fa fa-calendar-o"></i>@item.CampaignDate.ToString("dd MMMM, yyyy")</a>
-                                <h4>
-                                    <a href="#">@item.CampaignTitle</a>
-                                </h4>
-                                <div class="event-exceprt">@item.CampaignDetails</div>
-                                <div class="event-time">
-                                    <a href="#"><i class="fa fa-clock-o"></i>@item.StartTime - @item.EndTime</a>
-                                    <a href="#"> <i class="fa fa-map-marker"></i>@item.Location</a>
+            @{ 
+                int userTypeID = 0;
+                string sessionsUserType = Convert.ToString(Session["UserTypeID"]);
+                int.TryParse(sessionsUserType, out userTypeID);
+
+                <div class="row margin-top-48">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-6 col-sm-12">
+                            <div class="event-layout-1 theme-custom-box-shadow clearfix">
+                                <figure class="event-img">
+                                    <a href="#">
+                                        <img src="@Url.Content(item.CampaignPhoto)" alt="">
+                                    </a>
+                                </figure>
+                                <div class="event-info">
+                                    <a class="event-date" href="#"><i class="fa fa-calendar-o"></i>@item.CampaignDate.ToString("dd MMMM, yyyy")</a>
+                                    <h4>
+                                        <a href="#">@item.CampaignTitle</a>
+                                    </h4>
+                                    @if (userTypeID != 5)
+                                    {
+                                        <div class="event-exceprt">@item.CampaignDetails</div>
+                                    }
+                                    <div class="event-time">
+                                        <a href="#"><i class="fa fa-clock-o"></i>@item.StartTime - @item.EndTime</a>
+                                        <a href="#"> <i class="fa fa-map-marker"></i>@(item.Location == null ? "No Location" : item.Location)</a>
+                                    </div>
+                                    @if (userTypeID == 5)
+                                    {
+                                        <a href="@Url.Content("~/BloodBank/BloodBankStock")" class="btn btn-theme">Collect Blood</a>
+                                    }
                                 </div>
                             </div>
                         </div>
-                    </div>
-                }
-            </div>
+                    }
+                </div>
+            }
         </div> <!--  end .container  -->
     </section>
 
