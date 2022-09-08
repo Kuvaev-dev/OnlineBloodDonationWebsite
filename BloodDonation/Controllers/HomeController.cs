@@ -12,15 +12,16 @@ namespace BloodDonation.Controllers
     {
         db_a8c2c8_blooddonationEntities DB = new db_a8c2c8_blooddonationEntities();
 
-        // GET: Home
-        public ActionResult Index()
+        public ActionResult AllCampaigns()
         {
-            return View();
+            var date = DateTime.Now.AddDays(1);
+            var allCampaigns = DB.CampaignTables.Where(c => c.CampaignDate <= date).ToList();
+            return View(allCampaigns);
         }
 
         public ActionResult MainHome()
         {
-            var message = ViewData["Message"] == null ? "Welcome To Online Blood Donation Website" : ViewData["Message"];
+            var message = ViewData["Message"] ?? "Welcome To Online Blood Donation Website";
             ViewData["Message"] = message;
             var registrationMV = new RegistrationMV();
             ViewBag.UserTypeID = new SelectList(DB.UserTypeTables.Where(ut => ut.UserTypeID > 1).ToList(), "UserTypeID", "UserType", "0");
