@@ -4,8 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="91021357193c4ee39a0e32c9793eca00" Name="Diagram1" ZoomLevel="50">
-        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodBankStockTable" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+      <Diagram DiagramId="91021357193c4ee39a0e32c9793eca00" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodBankTable" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodGroupTable" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.CityTable" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
@@ -13,8 +12,6 @@
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.RequestTable" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.RequestTypeTable" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.SeekerTable" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
-        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockTable_BloodBankTable" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockTable_BloodGroupTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankTable_CityTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_BloodGroupTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_HospitalTable_CityTable" ManuallyRouted="false" />
@@ -38,10 +35,13 @@
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.CampaignTable" Width="1.5" PointX="5.25" PointY="11.75" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_CampaignTable_BloodBankTable" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodBankStockDetailTable" Width="2.25" PointX="16.75" PointY="6.875" />
-        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockDetailTable_BloodBankStockTable" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockDetailTable_BloodGroupTable" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockDetailTable_CampaignTable" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockDetailTable_DonorTable" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodBankStockTable" Width="1.5" PointX="11" PointY="5.25" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockDetailTable_BloodBankStockTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockTable_BloodBankTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockTable_BloodGroupTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

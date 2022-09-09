@@ -20,9 +20,11 @@ namespace BloodDonation.Controllers
                 return RedirectToAction("Login", "Home");
             }
 
-            var bloodBankStockList = new List<BloodBankStockMV>();
             int bloodBankID = 0;
-            int.TryParse(Convert.ToString(Session["BloodBankID"]), out bloodBankID);
+            string getBloodBankID = Convert.ToString(Session["BloodBankID"]);
+            int.TryParse(getBloodBankID, out bloodBankID);
+
+            var bloodBankStockList = new List<BloodBankStockMV>();
             var stockList = DB.BloodBankStockTables.Where(b => b.BloodBankID == bloodBankID);
 
             foreach (var stock in stockList)
@@ -77,7 +79,7 @@ namespace BloodDonation.Controllers
                 return RedirectToAction("Login", "Home");
             }
 
-            int bloodBankID = 0;
+            int bloodBankID;
             int.TryParse(Convert.ToString(Session["BloodBankID"]), out bloodBankID);
 
             campaignMV.BloodBankID = bloodBankID;

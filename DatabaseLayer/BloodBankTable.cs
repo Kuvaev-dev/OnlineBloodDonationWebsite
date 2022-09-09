@@ -17,8 +17,8 @@ namespace DatabaseLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BloodBankTable()
         {
-            this.BloodBankStockTables = new HashSet<BloodBankStockTable>();
             this.CampaignTables = new HashSet<CampaignTable>();
+            this.BloodBankStockTables = new HashSet<BloodBankStockTable>();
         }
     
         public int BloodBankID { get; set; }
@@ -31,11 +31,11 @@ namespace DatabaseLayer
         public int CityID { get; set; }
         public int UserID { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BloodBankStockTable> BloodBankStockTables { get; set; }
         public virtual CityTable CityTable { get; set; }
         public virtual UserTable UserTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CampaignTable> CampaignTables { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BloodBankStockTable> BloodBankStockTables { get; set; }
     }
 }

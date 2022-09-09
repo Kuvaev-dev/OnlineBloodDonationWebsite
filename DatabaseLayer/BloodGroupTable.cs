@@ -17,22 +17,22 @@ namespace DatabaseLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BloodGroupTable()
         {
-            this.BloodBankStockTables = new HashSet<BloodBankStockTable>();
             this.SeekerTables = new HashSet<SeekerTable>();
             this.DonorTables = new HashSet<DonorTable>();
             this.BloodBankStockDetailTables = new HashSet<BloodBankStockDetailTable>();
+            this.BloodBankStockTables = new HashSet<BloodBankStockTable>();
         }
     
         public int BloodGroupID { get; set; }
         public string BloodGroup { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BloodBankStockTable> BloodBankStockTables { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SeekerTable> SeekerTables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DonorTable> DonorTables { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BloodBankStockDetailTable> BloodBankStockDetailTables { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BloodBankStockTable> BloodBankStockTables { get; set; }
     }
 }

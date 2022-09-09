@@ -25,7 +25,6 @@ namespace DatabaseLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<BloodBankStockTable> BloodBankStockTables { get; set; }
         public virtual DbSet<BloodBankTable> BloodBankTables { get; set; }
         public virtual DbSet<BloodGroupTable> BloodGroupTables { get; set; }
         public virtual DbSet<CityTable> CityTables { get; set; }
@@ -40,5 +39,6 @@ namespace DatabaseLayer
         public virtual DbSet<GenderTable> GenderTables { get; set; }
         public virtual DbSet<CampaignTable> CampaignTables { get; set; }
         public virtual DbSet<BloodBankStockDetailTable> BloodBankStockDetailTables { get; set; }
+        public virtual DbSet<BloodBankStockTable> BloodBankStockTables { get; set; }
     }
 }

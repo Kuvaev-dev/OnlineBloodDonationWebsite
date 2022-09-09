@@ -23,13 +23,13 @@ namespace DatabaseLayer
         public int BloodBankStockID { get; set; }
         public int BloodBankID { get; set; }
         public int BloodGroupID { get; set; }
-        public int Quantity { get; set; }
+        public double Quantity { get; set; }
         public bool Status { get; set; }
         public string Description { get; set; }
     
-        public virtual BloodBankTable BloodBankTable { get; set; }
-        public virtual BloodGroupTable BloodGroupTable { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BloodBankStockDetailTable> BloodBankStockDetailTables { get; set; }
+        public virtual BloodBankTable BloodBankTable { get; set; }
+        public virtual BloodGroupTable BloodGroupTable { get; set; }
     }
 }

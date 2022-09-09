@@ -15,7 +15,7 @@ namespace BloodDonation.Models
         public int BloodGroupID { get; set; }
         [Display(Name = "Blood Group")]
         public string BloodGroup { get; set; }
-        public int Quantity { get; set; }
+        public double Quantity { get; set; }
         [Display(Name = "Is Ready")]
         public string Status { get; set; }
         [Display(Name = "Blood Details")]
