@@ -326,7 +326,7 @@
                                     and visit thousands of other venues on various occasions.
                                 </small>
                             </h4>
-                            <a class="btn btn-theme margin-top-32" href="#">Load All Campaigns</a>
+                            <a class="btn btn-theme margin-top-32" href="@Url.Content("~/Home/AllCampaigns")">Load All Campaigns</a>
                         </div> <!-- end .col-sm-12  -->
                     </div> <!-- end .row  -->
                 </div>
@@ -334,89 +334,59 @@
                 <div class="col-sm-12 col-md-7">
                     <div class="row wow fadeInRight">
                         <div class="event-carousel owl-carousel" data-nav="false" data-dots="true" data-items="1">
-                            <div class="col-md-6 col-sm-12">
-                                <div class="event-layout-1 theme-custom-box-shadow clearfix">
-                                    <figure class="event-img">
-                                        <a href="#">
-                                            <img src="../Content/Template/images/event_1.jpg" alt="">
-                                        </a>
-                                    </figure>
-                                    <div class="event-info">
-                                        <a class="event-date" href="#"><i class="fa fa-calendar-o"></i> 24 February, 2023</a>
-                                        <h4>
-                                            <a href="#">Opening Donation Day</a>
-                                        </h4>
-                                        <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris gone do.</div>
-                                        <div class="event-time">
-                                            <a href="#"><i class="fa fa-clock-o"></i> 10.00 - 3.00</a>
-                                            <a href="#"> <i class="fa fa-map-marker"></i> California, USA</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @{
+                                List<DatabaseLayer.CampaignTable> allActiveCampaigns = ViewBag.AllCampaigns != null ? (List<DatabaseLayer.CampaignTable>)ViewBag.AllCampaigns : null;
 
-                            <div class="col-md-6 col-sm-12">
-                                <div class="event-layout-1 theme-custom-box-shadow clearfix">
-                                    <figure class="event-img">
-                                        <a href="#">
-                                            <img src="../Content/Template/images/event_3.jpg" alt="">
-                                        </a>
-                                    </figure>
-                                    <div class="event-info">
-                                        <a class="event-date" href="#"><i class="fa fa-calendar-o"></i> 11 March, 2023</a>
-                                        <h4>
-                                            <a href="#">Free Group Checking</a>
-                                        </h4>
-                                        <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris gone do.</div>
-                                        <div class="event-time">
-                                            <a href="#"><i class="fa fa-clock-o"></i> 10.00 - 3.00</a>
-                                            <a href="#"> <i class="fa fa-map-marker"></i> California, USA</a>
+                                if (allActiveCampaigns != null)
+                                {
+                                    foreach (var item in allActiveCampaigns)
+                                    {
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="event-layout-1 theme-custom-box-shadow clearfix">
+                                                <figure class="event-img">
+                                                    <a href="#">
+                                                        <img src="@Url.Content(item.CampaignPhoto)" alt="">
+                                                    </a>
+                                                </figure>
+                                                <div class="event-info">
+                                                    <a class="event-date" href="#"><i class="fa fa-calendar-o"></i>@item.CampaignDate.ToString("dd MMMM, yyyyy")</a>
+                                                    <h4>
+                                                        <a href="#">@item.CampaignTitle</a>
+                                                    </h4>
+                                                    <div class="event-exceprt">@item.CampaignDetails</div>
+                                                    <div class="event-time">
+                                                        <a href="#"><i class="fa fa-clock-o"></i>@item.StartTime - @item.EndTime</a>
+                                                        <a href="#"> <i class="fa fa-map-marker"></i>@item.Location</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="event-layout-1 theme-custom-box-shadow clearfix">
+                                            <figure class="event-img">
+                                                <a href="#">
+                                                    <img src="../Content/Template/images/event_1.jpg" alt="">
+                                                </a>
+                                            </figure>
+                                            <div class="event-info">
+                                                <a class="event-date" href="#"><i class="fa fa-calendar-o"></i>00 Month, 0000</a>
+                                                <h4>
+                                                    <a href="#">Currently No Campaign</a>
+                                                </h4>
+                                                <div class="event-exceprt">Will be Arranged Shortly</div>
+                                                <div class="event-time">
+                                                    <a href="#"><i class="fa fa-clock-o"></i>Expected Time: 10.00 - 3.00</a>
+                                                    <a href="#"> <i class="fa fa-map-marker"></i>No Location</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-sm-12">
-                                <div class="event-layout-1 theme-custom-box-shadow clearfix">
-                                    <figure class="event-img">
-                                        <a href="#">
-                                            <img src="../Content/Template/images/event_4.jpg" alt="">
-                                        </a>
-                                    </figure>
-                                    <div class="event-info">
-                                        <a class="event-date" href="#"><i class="fa fa-calendar-o"></i> 14 June, 2023</a>
-                                        <h4>
-                                            <a href="#">Blood Group Collection</a>
-                                        </h4>
-                                        <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris gone do.</div>
-                                        <div class="event-time">
-                                            <a href="#"><i class="fa fa-clock-o"></i> 10.00 - 3.00</a>
-                                            <a href="#"> <i class="fa fa-map-marker"></i> California, USA</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 col-sm-12">
-                                <div class="event-layout-1 theme-custom-box-shadow clearfix">
-                                    <figure class="event-img">
-                                        <a href="#">
-                                            <img src="../Content/Template/images/event_2.jpg" alt="">
-                                        </a>
-                                    </figure>
-                                    <div class="event-info">
-                                        <a class="event-date" href="#"><i class="fa fa-calendar-o"></i> 31 July, 2023</a>
-                                        <h4>
-                                            <a href="#">Blood Donation Camp</a>
-                                        </h4>
-                                        <div class="event-exceprt">Lorem ipsum dolor sit amet turadipi scing elit lobort issim consecte lodign pharetra. Lobort qssim tronsecte diagnosis sharetrx mauris gone do.</div>
-                                        <div class="event-time">
-                                            <a href="#"><i class="fa fa-clock-o"></i> 10.00 - 3.00</a>
-                                            <a href="#"> <i class="fa fa-map-marker"></i> California, USA</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                }
+                            }
                         </div>
                     </div>
                 </div>

@@ -131,40 +131,52 @@ namespace BloodDonation.Controllers
                             checkDonor = DB.DonorTables.Where(d => d.CNIC.Trim().Replace("-", "") == collectBloodMV.DonorDetails.CNIC.Trim().Replace("-", "")).FirstOrDefault();
                         }
 
-                        var checkBloodGroupStock = DB.BloodBankStockTables.Where(s => s.BloodBankID == bloodBankID &&
-                                                                                      s.BloodGroupID == collectBloodMV.BloodGroupID).FirstOrDefault();
-                        if (checkBloodGroupStock == null)
+                        if ((DateTime.Now - checkDonor.LastDonationDate).TotalDays < 120)
                         {
-                            var bloodBankStock = new BloodBankStockTable();
-                            bloodBankStock.BloodBankID = bloodBankID;
-                            bloodBankStock.BloodGroupID = collectBloodMV.BloodGroupID;
-                            bloodBankStock.Quantity = 0;
-                            bloodBankStock.Status = true;
-                            bloodBankStock.Description = "";
-                            DB.BloodBankStockTables.Add(bloodBankStock);
+                            ModelState.AddModelError(string.Empty, "Donor Already Donate His Blood");
+                            transaction.Rollback();
+                        }
+                        else
+                        {
+                            var checkBloodGroupStock = DB.BloodBankStockTables.Where(s => s.BloodBankID == bloodBankID &&
+                                                                                          s.BloodGroupID == collectBloodMV.BloodGroupID).FirstOrDefault();
+                            if (checkBloodGroupStock == null)
+                            {
+                                var bloodBankStock = new BloodBankStockTable();
+                                bloodBankStock.BloodBankID = bloodBankID;
+                                bloodBankStock.BloodGroupID = collectBloodMV.BloodGroupID;
+                                bloodBankStock.Quantity = 0;
+                                bloodBankStock.Status = true;
+                                bloodBankStock.Description = "";
+                                DB.BloodBankStockTables.Add(bloodBankStock);
 
+                                DB.SaveChanges();
+
+                                checkBloodGroupStock = DB.BloodBankStockTables.Where(s => s.BloodBankID == bloodBankID &&
+                                                                                          s.BloodGroupID == collectBloodMV.BloodGroupID).FirstOrDefault();
+                            }
+
+                            checkBloodGroupStock.Quantity += collectBloodMV.Quantity;
+                            DB.Entry(checkBloodGroupStock).State = System.Data.Entity.EntityState.Modified;
                             DB.SaveChanges();
 
-                            checkBloodGroupStock = DB.BloodBankStockTables.Where(s => s.BloodBankID == bloodBankID &&
-                                                                                      s.BloodGroupID == collectBloodMV.BloodGroupID).FirstOrDefault();
+                            var collectBloodDetail = new BloodBankStockDetailTable();
+                            collectBloodDetail.BloodBankStockID = checkBloodGroupStock.BloodBankStockID;
+                            collectBloodDetail.BloodGroupID = collectBloodMV.BloodGroupID;
+                            collectBloodDetail.CampaignID = currentCampaign.CampaignID;
+                            collectBloodDetail.Quantity = collectBloodMV.Quantity;
+                            collectBloodDetail.DonorID = checkDonor.DonorID;
+                            collectBloodDetail.DonateDateTime = DateTime.Now;
+                            DB.BloodBankStockDetailTables.Add(collectBloodDetail);
+                            DB.SaveChanges();
+
+                            checkDonor.LastDonationDate = DateTime.Now;
+                            DB.Entry(checkDonor).State = System.Data.Entity.EntityState.Modified;
+                            DB.SaveChanges();
+
+                            transaction.Commit();
+                            return RedirectToAction("BloodBankStock", "BloodBank");
                         }
-
-                        checkBloodGroupStock.Quantity += collectBloodMV.Quantity;
-                        DB.Entry(checkBloodGroupStock).State = System.Data.Entity.EntityState.Modified;
-                        DB.SaveChanges();
-
-                        var collectBloodDetail = new BloodBankStockDetailTable();
-                        collectBloodDetail.BloodBankStockID = checkBloodGroupStock.BloodBankStockID;
-                        collectBloodDetail.BloodGroupID = collectBloodMV.BloodGroupID;
-                        collectBloodDetail.CampaignID = currentCampaign.CampaignID;
-                        collectBloodDetail.Quantity = collectBloodMV.Quantity;
-                        collectBloodDetail.DonorID = checkDonor.DonorID;
-                        collectBloodDetail.DonateDateTime = DateTime.Now;
-                        DB.BloodBankStockDetailTables.Add(collectBloodDetail);
-                        DB.SaveChanges();
-
-                        transaction.Commit();
-                        return RedirectToAction("BloodBankStock", "BloodBank");
                     }
                     catch
                     {

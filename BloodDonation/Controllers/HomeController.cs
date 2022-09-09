@@ -14,8 +14,8 @@ namespace BloodDonation.Controllers
 
         public ActionResult AllCampaigns()
         {
-            var date = DateTime.Now.AddDays(1);
-            var allCampaigns = DB.CampaignTables.Where(c => c.CampaignDate <= date).ToList();
+            var date = DateTime.Now.Date;
+            var allCampaigns = DB.CampaignTables.Where(c => c.CampaignDate > date).ToList();
             return View(allCampaigns);
         }
 
@@ -23,6 +23,11 @@ namespace BloodDonation.Controllers
         {
             var message = ViewData["Message"] ?? "Welcome To Online Blood Donation Website";
             ViewData["Message"] = message;
+
+            var date = DateTime.Now.Date;
+            var allCampaigns = DB.CampaignTables.Where(c => c.CampaignDate > date).ToList();
+            ViewBag.AllCampaigns = allCampaigns;
+
             var registrationMV = new RegistrationMV();
             ViewBag.UserTypeID = new SelectList(DB.UserTypeTables.Where(ut => ut.UserTypeID > 1).ToList(), "UserTypeID", "UserType", "0");
             ViewBag.CityID = new SelectList(DB.CityTables.ToList(), "CityID", "City", "0");

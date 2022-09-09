@@ -181,6 +181,7 @@
 
             @{ 
                 int userTypeID = 0;
+                var date = DateTime.Now.Date;
                 string sessionsUserType = Convert.ToString(Session["UserTypeID"]);
                 int.TryParse(sessionsUserType, out userTypeID);
 
@@ -207,7 +208,7 @@
                                         <a href="#"><i class="fa fa-clock-o"></i>@item.StartTime - @item.EndTime</a>
                                         <a href="#"> <i class="fa fa-map-marker"></i>@(item.Location == null ? "No Location" : item.Location)</a>
                                     </div>
-                                    @if (userTypeID == 5)
+                                    @if (userTypeID == 5 && item.CampaignDate == date)
                                     {
                                         <a href="@Url.Content("~/BloodBank/BloodBankStock")" class="btn btn-theme">Collect Blood</a>
                                     }

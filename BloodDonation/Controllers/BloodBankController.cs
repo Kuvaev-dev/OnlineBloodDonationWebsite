@@ -55,6 +55,11 @@ namespace BloodDonation.Controllers
             int.TryParse(Convert.ToString(Session["BloodBankID"]), out bloodBankID);
             var allCampaigns = DB.CampaignTables.Where(c => c.BloodBankID == bloodBankID);
 
+            if (allCampaigns.Count() > 0)
+            {
+                allCampaigns = allCampaigns.OrderByDescending(o => o.CampaignID);
+            }
+
             return View(allCampaigns);
         }
 
