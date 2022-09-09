@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Reddrop Buddies - Blood Donation Campaign & Multi-Concept Activism Template">
     <meta name="author" content="xenioushk">
-    <link rel="shortcut icon" href="../Content/Template/images/favicon.png" />
+    <link rel="shortcut icon" href="@Url.Content("~/Content/Template/images/favicon.png")" />
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="preloader">
-        <span class="margin-bottom"><img src="../Content/Template/images/loader.gif" alt="" /></span>
+        <span class="margin-bottom"><img src="@Url.Content("~/Content/Template/images/loader.gif")" alt="" /></span>
     </div>
 
     <header class="main-header clearfix" data-sticky_header="true">
@@ -69,18 +69,14 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="logo" href="index.html"><img alt="" src="~/Content/Template/images/logo.png"></a>
+                        <a class="logo" href="index.html"><img alt="" src="@Url.Content("~/Content/Template/images/logo.png")"></a>
                     </div>
 
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
 
                             <li>
-                                <a href="#">Home</a>
-                                <ul class="drop-down">
-                                    <li><a href="index.html" title="Home Layout 01">Home 01</a></li>
-                                    <li><a href="home-2.html" title="Home Layout 02">Home 02</a></li>
-                                </ul>
+                                <a href="@Url.Content("~/Home/MainHome")">Home</a>
                             </li>
 
                             <li><a href="about-us.html" title="About Us">About Us</a></li>
@@ -151,7 +147,7 @@
     <!--  HOME SLIDER BLOCK  -->
     <div class="slider-wrap">
         <div id="slider_1" class="owl-carousel" data-nav="true" data-dots="false" data-autoplay="true" data-autoplaytimeout="17000">
-            <div class="slider_item_container" data-bg_img="../Content/Template/images/home_1_slider_1.jpg" data-bg_color="#555555" data-bg_opacity="0.0">
+            <div class="slider_item_container" data-bg_img='@Url.Content("~/Content/Template/images/home_1_slider_1.jpg")' data-bg_color="#555555" data-bg_opacity="0.0">
                 <div class="item">
                     <div class="slider-content">
                         <div class="container text-left">
@@ -176,7 +172,7 @@
                 </div> <!-- end .item  -->
             </div> <!-- end .slider_item_container  -->
 
-            <div class="slider_item_container" data-bg_img="../Content/Template/images/home_1_slider_2.jpg" data-bg_color="#555555" data-bg_opacity="0.0">
+            <div class="slider_item_container" data-bg_img="@Url.Content("~/Content/Template/images/home_1_slider_2.jpg")" data-bg_color="#555555" data-bg_opacity="0.0">
                 <div class="item">
                     <div class="slider-content">
                         <div class="container text-left">
@@ -233,7 +229,7 @@
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <figure class="about-img theme-custom-box-shadow">
                         <a class="venobox wow bounceIn" data-vbtype="video" data-autoplay="true" href="https://www.youtube.com/watch?v=nrJtHemSPW4"><i class="fa fa-play"></i></a>
-                        <img src="../Content/Template/images/about_feat_bg.jpg" alt="about" />
+                        <img src="@Url.Content("~/Content/Template/images/about_feat_bg.jpg")" alt="about" />
                     </figure> <!-- end .cause-img  -->
                 </div> <!--  end .col-lg-6 col-md-6 col-sm-12 col-xs-12  -->
             </div> <!--  end .row  -->
@@ -241,7 +237,7 @@
     </section> <!--  end .section-about-us -->
     <!-- SECTION TESTIMONIAL -->
 
-    <section class="section-content-block section-custom-bg" data-bg_img='../Content/Template/images/testimony_feat_bg.jpg' data-bg_size='cover' data-bg_position='top center' data-bg_opacity="0">
+    <section class="section-content-block section-custom-bg" data-bg_img="@Url.Content("~/Content/Template/images/testimony_feat_bg.jpg")" data-bg_size='cover' data-bg_position='top center' data-bg_opacity="0">
         <div class="container margin-top-80">
             <div class="row section-heading-wrapper-alt">
                 <div class="col-md-12 col-sm-12 text-center no-img-separator">
@@ -265,7 +261,7 @@
                                     I proudly donate blood on a regular basis because it gives others something they desperately need to survive. Just knowing I can make a difference in someone else's life makes me feel great!
                                 </p>
 
-                                <img src="../Content/Template/images/user_1.jpg" alt="" />
+                                <img src="@Url.Content("~/Content/Template/images/user_1.jpg")" alt="" />
                                 <h6>Brandon Munson</h6>
                                 <span>CTO, Fulcrum Design, USA</span>
                             </div> <!-- end .testimony-layout-1  -->
@@ -278,7 +274,7 @@
                                     I have been a donor since high school. Although I have not been a donor every year, I always want to give to the human race. I love to help others! Moreover it gives a real peace in my mind.
                                 </p>
 
-                                <img src="../Content/Template/images/user_2.jpg" alt="" />
+                                <img src="@Url.Content("~/Content/Template/images/user_2.jpg")" alt="" />
                                 <h6>Munson Brandon</h6>
                                 <span>CTO, Fulcrum Design, USA</span>
                             </div> <!-- end .testimony-layout-1  -->
@@ -291,7 +287,7 @@
                                     I wish I could tell you my donor how grateful I am for your selfless act.You gave me new life. We may be coworkers or schoolmates or just two in the same community.I'm very grateful to you.
                                 </p>
 
-                                <img src="../Content/Template/images/user_3.jpg" alt="" />
+                                <img src="@Url.Content("~/Content/Template/images/user_3.jpg")" alt="" />
                                 <h6>Logan Munson</h6>
                                 <span>CTO, Fulcrum Design, USA</span>
                             </div> <!-- end .testimony-layout-1  -->
@@ -301,7 +297,7 @@
 
                 <div class="col-lg-6 hidden-md hidden-xs hidden-sm no-padding">
                     <figure>
-                        <img src="../Content/Template/images/testimony_feat_img.jpg" alt="" class="db" />
+                        <img src="@Url.Content("~/Content/Template/images/testimony_feat_img.jpg")" alt="" class="db" />
                     </figure>
                 </div>
             </div>
@@ -369,7 +365,7 @@
                                         <div class="event-layout-1 theme-custom-box-shadow clearfix">
                                             <figure class="event-img">
                                                 <a href="#">
-                                                    <img src="../Content/Template/images/event_1.jpg" alt="">
+                                                    <img src="@Url.Content("~/Content/Template/images/event_1.jpg")" alt="">
                                                 </a>
                                             </figure>
                                             <div class="event-info">
@@ -397,7 +393,7 @@
 
     <!--  SECTION APPOINTMENT BOX -->
 
-    <section class="section-content-block section-custom-bg section-custom-bg-extra-padding" data-bg_img='../Content/Template/images/appointment_female_bg.jpg' data-bg_color='#000000' data-bg_opacity='0.1'>
+    <section class="section-content-block section-custom-bg section-custom-bg-extra-padding" data-bg_img='@Url.Content("~/Content/Template/images/appointment_female_bg.jpg")' data-bg_color='#000000' data-bg_opacity='0.1'>
         <div class="container">
             <div class="custom-empty-space" data-height="160px" data-class="col-sm-hidden"></div>
         </div>
@@ -522,7 +518,7 @@
     </section>  <!--  end .appointment-section  -->
     <!-- SECTION TEAM   -->
 
-    <section class="section-content-block section-custom-bg" data-bg_img='../Content/Template/images/team_feat_bg.jpg' data-bg_size='cover' data-bg_position='top center' data-bg_opacity="0">
+    <section class="section-content-block section-custom-bg" data-bg_img="@Url.Content("~/Content/Template/images/team_feat_bg.jpg' data-bg_size='cover' data-bg_position='top center")" data-bg_opacity="0">
         <div class="container margin-top-80">
             <div class="row section-heading-wrapper-alt">
                 <div class="col-md-12 col-sm-12 text-center no-img-separator">
@@ -541,7 +537,7 @@
                     <div class="team-layout-1 theme-custom-box-shadow theme-custom-box-animation">
                         <figure class="team-member">
                             <a href="#" title="ALEXANDER GARY">
-                                <img src="../Content/Template/images/team_9.jpg" alt="ALEXANDER GARY" />
+                                <img src="@Url.Content("~/Content/Template/images/team_9.jpg")" alt="ALEXANDER GARY" />
                             </a>
                         </figure> <!-- end. team-member  -->
 
@@ -565,7 +561,7 @@
                     <div class="team-layout-1 theme-custom-box-shadow theme-custom-box-animation">
                         <figure class="team-member">
                             <a href="#" title="MELISSA MUNOZ">
-                                <img src="../Content/Template/images/team_6.jpg" alt="MELISSA MUNOZ" />
+                                <img src="@Url.Content("~/Content/Template/images/team_6.jpg")" alt="MELISSA MUNOZ" />
                             </a>
                         </figure> <!-- end. team-member  -->
 
@@ -589,7 +585,7 @@
                     <div class="team-layout-1 theme-custom-box-shadow theme-custom-box-animation">
                         <figure class="team-member">
                             <a href="#" title="JOHN ABRAHAM">
-                                <img src="../Content/Template/images/team_7.jpg" alt="JOHN ABRAHAM" />
+                                <img src="@Url.Content("~/Content/Template/images/team_7.jpg")" alt="JOHN ABRAHAM" />
                             </a>
                         </figure> <!-- end. team-member  -->
 
@@ -636,25 +632,25 @@
         <div class="container wow fadeInUp">
             <div class="row no-padding-gallery">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-                    <a class="gallery-light-box" data-gall="myGallery" href="~/Content/Template/images/gallery_1.jpg">
+                    <a class="gallery-light-box" data-gall="myGallery" href="@Url.Content("~/Content/Template/images/gallery_1.jpg")">
                         <figure class="gallery-img">
-                            <img src="../Content/Template/images/gallery_1.jpg" alt="gallery image" />
+                            <img src="@Url.Content("~/Content/Template/images/gallery_1.jpg")" alt="gallery image" />
                         </figure> <!-- end .gallery-img  -->
                     </a>
                 </div><!-- end .col-sm-3  -->
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-                    <a class="gallery-light-box" data-gall="myGallery" href="~/Content/Template/images/gallery_2.jpg">
+                    <a class="gallery-light-box" data-gall="myGallery" href="@Url.Content("~/Content/Template/images//gallery_2.jpg")">
                         <figure class="gallery-img">
-                            <img src="../Content/Template/images/gallery_2.jpg" alt="gallery image" />
+                            <img src="@Url.Content("~/Content/Template/images/gallery_2.jpg")" alt="gallery image" />
                         </figure> <!-- end .gallery-img  -->
                     </a> <!-- end .gallery-light-box  -->
                 </div><!-- end .col-sm-3  -->
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-                    <a class="gallery-light-box" data-gall="myGallery" href="~/Content/Template/images/gallery_3.jpg">
+                    <a class="gallery-light-box" data-gall="myGallery" href="@Url.Content("~/Content/Template/images//gallery_3.jpg")">
                         <figure class="gallery-img">
-                            <img src="../Content/Template/images/gallery_3.jpg" alt="gallery image" />
+                            <img src="@Url.Content("~/Content/Template/images/gallery_3.jpg")" alt="gallery image" />
                         </figure> <!-- end .gallery-img  -->
                     </a>
                 </div><!-- end .col-sm-3  -->
@@ -662,25 +658,25 @@
 
             <div class="row no-padding-gallery">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-                    <a class="gallery-light-box" data-gall="myGallery" href="~/Content/Template/images/gallery_4.jpg">
+                    <a class="gallery-light-box" data-gall="myGallery" href="@Url.Content("~/Content/Template/images/gallery_4.jpg")">
                         <figure class="gallery-img">
-                            <img src="../Content/Template/images/gallery_4.jpg" alt="gallery image" />
+                            <img src="@Url.Content("~/Content/Template/images/gallery_4.jpg")" alt="gallery image" />
                         </figure> <!-- end .gallery-img  -->
                     </a> <!-- end .gallery-light-box  -->
                 </div><!-- end .col-sm-3  -->
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-                    <a class="gallery-light-box" data-gall="myGallery" href="~/Content/Template/images/gallery_5.jpg">
+                    <a class="gallery-light-box" data-gall="myGallery" href="@Url.Content("~/Content/Template/images/gallery_5.jpg")">
                         <figure class="gallery-img">
-                            <img src="../Content/Template/images/gallery_5.jpg" alt="gallery image" />
+                            <img src="@Url.Content("~/Content/Template/images/gallery_5.jpg")" alt="gallery image" />
                         </figure> <!-- end .gallery-img  -->
                     </a>
                 </div><!-- end .col-sm-3  -->
 
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 gallery-container">
-                    <a class="gallery-light-box" data-gall="myGallery" href="~/Content/Template/images/gallery_6.jpg">
+                    <a class="gallery-light-box" data-gall="myGallery" href="@Url.Content("~/Content/Template/images/gallery_6.jpg")">
                         <figure class="gallery-img">
-                            <img src="../Content/Template/images/gallery_6.jpg" alt="gallery image" />
+                            <img src="@Url.Content("~/Content/Template/images/gallery_6.jpg")" alt="gallery image" />
                         </figure> <!-- end .gallery-img  -->
                     </a> <!-- end .gallery-light-box  -->
                 </div><!-- end .col-sm-3  -->
@@ -715,7 +711,7 @@
                     <div class="about-footer">
                         <div class="row">
                             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                                <img src="~/Content/Template/images/logo-footer.png" alt="" />
+                                <img src="@Url.Content("~/Content/Template/images/logo-footer.png")" alt="" />
                             </div> <!--  end col-lg-3-->
 
                             <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
