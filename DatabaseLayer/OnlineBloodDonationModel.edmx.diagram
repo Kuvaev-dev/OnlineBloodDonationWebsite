@@ -9,14 +9,12 @@
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.BloodGroupTable" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.CityTable" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.HospitalTable" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.RequestTable" Width="1.5" PointX="13.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.RequestTypeTable" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.SeekerTable" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankTable_CityTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_BloodGroupTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_HospitalTable_CityTable" ManuallyRouted="false" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_SeekerTable_CityTable" ManuallyRouted="false" />
-        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_RequestTable_RequestTypeTable" ManuallyRouted="false" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.AccountStatusTable" Width="1.5" PointX="10" PointY="10.75" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.UserTable" Width="1.5" PointX="12.25" PointY="9.875" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.UserTypeTable" Width="1.5" PointX="10" PointY="13.75" />
@@ -44,9 +42,11 @@
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_BloodBankStockTable_BloodGroupTable" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.AcceptedTypeTable" Width="1.5" PointX="8.125" PointY="12.5" />
         <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.RequestStatusTable" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="db_a8c2c8_blooddonationModel.RequestTable" Width="1.5" PointX="19.75" PointY="5.625" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_RequestTable_AcceptedTypeTable" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_RequestTable_DonorTable" />
         <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_RequestTable_RequestStatusTable" />
+        <AssociationConnector Association="db_a8c2c8_blooddonationModel.FK_RequestTable_RequestTypeTable" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -252,6 +252,8 @@
     <Compile Include="Models\CollectedBloodDonorDetailMV.cs" />
     <Compile Include="Models\CollectBloodMV.cs" />
     <Compile Include="Models\DonorMV.cs" />
+    <Compile Include="Models\FinderMV.cs" />
+    <Compile Include="Models\FinderSearchResultMV.cs" />
     <Compile Include="Models\HospitalMV.cs" />
     <Compile Include="Models\ReigstrationMV.cs" />
     <Compile Include="Models\RequestTypeMV.cs" />

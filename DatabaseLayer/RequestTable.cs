@@ -16,22 +16,18 @@ namespace DatabaseLayer
     {
         public int RequestID { get; set; }
         public System.DateTime RequestDate { get; set; }
-        public int SeekerID { get; set; }
-        public int HospitalID { get; set; }
-        public int BloodBankID { get; set; }
-        public int DonorID { get; set; }
-        public int RequiredBloodGroupID { get; set; }
-        public int RequestTypeID { get; set; }
         public int RequestByID { get; set; }
         public int AcceptedID { get; set; }
+        public int RequiredBloodGroupID { get; set; }
+        public int RequestTypeID { get; set; }
         public int AcceptedTypeID { get; set; }
         public int RequestStatusID { get; set; }
         public System.DateTime ExpectedDate { get; set; }
         public string RequestDetails { get; set; }
     
-        public virtual RequestTypeTable RequestTypeTable { get; set; }
         public virtual AcceptedTypeTable AcceptedTypeTable { get; set; }
         public virtual DonorTable DonorTable { get; set; }
         public virtual RequestStatusTable RequestStatusTable { get; set; }
+        public virtual RequestTypeTable RequestTypeTable { get; set; }
     }
 }
