@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище db_a8c2c8_blooddonationModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AcceptedTypeTable">
+          <Key>
+            <PropertyRef Name="AcceptedTypeID" />
+          </Key>
+          <Property Name="AcceptedTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AcceptedType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="AccountStatusTable">
           <Key>
             <PropertyRef Name="AccountStatusID" />
@@ -113,18 +120,27 @@
           <Property Name="CityID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="RequestStatusTable">
+          <Key>
+            <PropertyRef Name="RequestStatusID" />
+          </Key>
+          <Property Name="RequestStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="RequestTable">
           <Key>
             <PropertyRef Name="RequestID" />
           </Key>
           <Property Name="RequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RequestDate" Type="date" Nullable="false" />
-          <Property Name="SeekerID" Type="int" Nullable="false" />
-          <Property Name="HospitalID" Type="int" Nullable="false" />
-          <Property Name="BloodBankID" Type="int" Nullable="false" />
-          <Property Name="DonorID" Type="int" Nullable="false" />
+          <Property Name="RequestByID" Type="int" Nullable="false" />
+          <Property Name="AcceptedID" Type="int" Nullable="false" />
           <Property Name="RequiredBloodGroupID" Type="int" Nullable="false" />
           <Property Name="RequestTypeID" Type="int" Nullable="false" />
+          <Property Name="AcceptedTypeID" Type="int" Nullable="false" />
+          <Property Name="RequestStatusID" Type="int" Nullable="false" />
+          <Property Name="ExpectedDate" Type="date" Nullable="false" />
+          <Property Name="RequestDetails" Type="nvarchar" MaxLength="2000" />
         </EntityType>
         <EntityType Name="RequestTypeTable">
           <Key>
@@ -348,6 +364,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RequestTable_AcceptedTypeTable">
+          <End Role="AcceptedTypeTable" Type="Self.AcceptedTypeTable" Multiplicity="1" />
+          <End Role="RequestTable" Type="Self.RequestTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcceptedTypeTable">
+              <PropertyRef Name="AcceptedTypeID" />
+            </Principal>
+            <Dependent Role="RequestTable">
+              <PropertyRef Name="AcceptedTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestTable_DonorTable">
+          <End Role="DonorTable" Type="Self.DonorTable" Multiplicity="1" />
+          <End Role="RequestTable" Type="Self.RequestTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonorTable">
+              <PropertyRef Name="DonorID" />
+            </Principal>
+            <Dependent Role="RequestTable">
+              <PropertyRef Name="AcceptedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestTable_RequestStatusTable">
+          <End Role="RequestStatusTable" Type="Self.RequestStatusTable" Multiplicity="1" />
+          <End Role="RequestTable" Type="Self.RequestTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestStatusTable">
+              <PropertyRef Name="RequestStatusID" />
+            </Principal>
+            <Dependent Role="RequestTable">
+              <PropertyRef Name="RequestStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RequestTable_RequestTypeTable">
           <End Role="RequestTypeTable" Type="Self.RequestTypeTable" Multiplicity="1" />
           <End Role="RequestTable" Type="Self.RequestTable" Multiplicity="*" />
@@ -433,6 +485,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище db_a8c2c8_blooddonationModelContainer">
+          <EntitySet Name="AcceptedTypeTable" EntityType="Self.AcceptedTypeTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountStatusTable" EntityType="Self.AccountStatusTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BloodBankStockDetailTable" EntityType="Self.BloodBankStockDetailTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BloodBankStockTable" EntityType="Self.BloodBankStockTable" Schema="dbo" store:Type="Tables" />
@@ -443,6 +496,7 @@
           <EntitySet Name="DonorTable" EntityType="Self.DonorTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GenderTable" EntityType="Self.GenderTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HospitalTable" EntityType="Self.HospitalTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestStatusTable" EntityType="Self.RequestStatusTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RequestTable" EntityType="Self.RequestTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RequestTypeTable" EntityType="Self.RequestTypeTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SeekerTable" EntityType="Self.SeekerTable" Schema="dbo" store:Type="Tables" />
@@ -507,6 +561,18 @@
           <AssociationSet Name="FK_HospitalTable_UserTable" Association="Self.FK_HospitalTable_UserTable">
             <End Role="UserTable" EntitySet="UserTable" />
             <End Role="HospitalTable" EntitySet="HospitalTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestTable_AcceptedTypeTable" Association="Self.FK_RequestTable_AcceptedTypeTable">
+            <End Role="AcceptedTypeTable" EntitySet="AcceptedTypeTable" />
+            <End Role="RequestTable" EntitySet="RequestTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestTable_DonorTable" Association="Self.FK_RequestTable_DonorTable">
+            <End Role="DonorTable" EntitySet="DonorTable" />
+            <End Role="RequestTable" EntitySet="RequestTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestTable_RequestStatusTable" Association="Self.FK_RequestTable_RequestStatusTable">
+            <End Role="RequestStatusTable" EntitySet="RequestStatusTable" />
+            <End Role="RequestTable" EntitySet="RequestTable" />
           </AssociationSet>
           <AssociationSet Name="FK_RequestTable_RequestTypeTable" Association="Self.FK_RequestTable_RequestTypeTable">
             <End Role="RequestTypeTable" EntitySet="RequestTypeTable" />
@@ -610,6 +676,15 @@
           <Property Name="RequiredBloodGroupID" Type="Int32" Nullable="false" />
           <Property Name="RequestTypeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="RequestTypeTable" Relationship="Self.FK_RequestTable_RequestTypeTable" FromRole="RequestTable" ToRole="RequestTypeTable" />
+          <Property Name="RequestByID" Type="Int32" Nullable="false" />
+          <Property Name="AcceptedID" Type="Int32" Nullable="false" />
+          <Property Name="AcceptedTypeID" Type="Int32" Nullable="false" />
+          <Property Name="RequestStatusID" Type="Int32" Nullable="false" />
+          <Property Name="ExpectedDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RequestDetails" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AcceptedTypeTable" Relationship="db_a8c2c8_blooddonationModel.FK_RequestTable_AcceptedTypeTable" FromRole="RequestTable" ToRole="AcceptedTypeTable" />
+          <NavigationProperty Name="DonorTable" Relationship="db_a8c2c8_blooddonationModel.FK_RequestTable_DonorTable" FromRole="RequestTable" ToRole="DonorTable" />
+          <NavigationProperty Name="RequestStatusTable" Relationship="db_a8c2c8_blooddonationModel.FK_RequestTable_RequestStatusTable" FromRole="RequestTable" ToRole="RequestStatusTable" />
         </EntityType>
         <EntityType Name="RequestTypeTable">
           <Key>
@@ -803,6 +878,20 @@
             <End Role="BloodGroupTable" EntitySet="BloodGroupTables" />
             <End Role="BloodBankStockTable" EntitySet="BloodBankStockTables" />
           </AssociationSet>
+          <EntitySet Name="AcceptedTypeTables" EntityType="db_a8c2c8_blooddonationModel.AcceptedTypeTable" />
+          <EntitySet Name="RequestStatusTables" EntityType="db_a8c2c8_blooddonationModel.RequestStatusTable" />
+          <AssociationSet Name="FK_RequestTable_AcceptedTypeTable" Association="db_a8c2c8_blooddonationModel.FK_RequestTable_AcceptedTypeTable">
+            <End Role="AcceptedTypeTable" EntitySet="AcceptedTypeTables" />
+            <End Role="RequestTable" EntitySet="RequestTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestTable_DonorTable" Association="db_a8c2c8_blooddonationModel.FK_RequestTable_DonorTable">
+            <End Role="DonorTable" EntitySet="DonorTables" />
+            <End Role="RequestTable" EntitySet="RequestTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RequestTable_RequestStatusTable" Association="db_a8c2c8_blooddonationModel.FK_RequestTable_RequestStatusTable">
+            <End Role="RequestStatusTable" EntitySet="RequestStatusTables" />
+            <End Role="RequestTable" EntitySet="RequestTables" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AccountStatusTable">
           <Key>
@@ -917,6 +1006,7 @@
           <NavigationProperty Name="GenderTable" Relationship="db_a8c2c8_blooddonationModel.FK_DonorTable_GenderTable" FromRole="DonorTable" ToRole="GenderTable" />
           <NavigationProperty Name="UserTable" Relationship="db_a8c2c8_blooddonationModel.FK_DonorTable_UserTable" FromRole="DonorTable" ToRole="UserTable" />
           <NavigationProperty Name="BloodBankStockDetailTables" Relationship="db_a8c2c8_blooddonationModel.FK_BloodBankStockDetailTable_DonorTable" FromRole="DonorTable" ToRole="BloodBankStockDetailTable" />
+          <NavigationProperty Name="RequestTables" Relationship="db_a8c2c8_blooddonationModel.FK_RequestTable_DonorTable" FromRole="DonorTable" ToRole="RequestTable" />
         </EntityType>
         <EntityType Name="GenderTable">
           <Key>
@@ -1117,6 +1207,58 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AcceptedTypeTable">
+          <Key>
+            <PropertyRef Name="AcceptedTypeID" />
+          </Key>
+          <Property Name="AcceptedTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AcceptedType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RequestTables" Relationship="db_a8c2c8_blooddonationModel.FK_RequestTable_AcceptedTypeTable" FromRole="AcceptedTypeTable" ToRole="RequestTable" />
+        </EntityType>
+        <EntityType Name="RequestStatusTable">
+          <Key>
+            <PropertyRef Name="RequestStatusID" />
+          </Key>
+          <Property Name="RequestStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RequestTables" Relationship="db_a8c2c8_blooddonationModel.FK_RequestTable_RequestStatusTable" FromRole="RequestStatusTable" ToRole="RequestTable" />
+        </EntityType>
+        <Association Name="FK_RequestTable_AcceptedTypeTable">
+          <End Type="db_a8c2c8_blooddonationModel.AcceptedTypeTable" Role="AcceptedTypeTable" Multiplicity="1" />
+          <End Type="db_a8c2c8_blooddonationModel.RequestTable" Role="RequestTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AcceptedTypeTable">
+              <PropertyRef Name="AcceptedTypeID" />
+            </Principal>
+            <Dependent Role="RequestTable">
+              <PropertyRef Name="AcceptedTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestTable_DonorTable">
+          <End Type="db_a8c2c8_blooddonationModel.DonorTable" Role="DonorTable" Multiplicity="1" />
+          <End Type="db_a8c2c8_blooddonationModel.RequestTable" Role="RequestTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonorTable">
+              <PropertyRef Name="DonorID" />
+            </Principal>
+            <Dependent Role="RequestTable">
+              <PropertyRef Name="AcceptedID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RequestTable_RequestStatusTable">
+          <End Type="db_a8c2c8_blooddonationModel.RequestStatusTable" Role="RequestStatusTable" Multiplicity="1" />
+          <End Type="db_a8c2c8_blooddonationModel.RequestTable" Role="RequestTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestStatusTable">
+              <PropertyRef Name="RequestStatusID" />
+            </Principal>
+            <Dependent Role="RequestTable">
+              <PropertyRef Name="RequestStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1172,12 +1314,14 @@
           <EntitySetMapping Name="RequestTables">
             <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.RequestTable">
               <MappingFragment StoreEntitySet="RequestTable">
+                <ScalarProperty Name="RequestDetails" ColumnName="RequestDetails" />
+                <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
+                <ScalarProperty Name="AcceptedTypeID" ColumnName="AcceptedTypeID" />
+                <ScalarProperty Name="AcceptedID" ColumnName="AcceptedID" />
+                <ScalarProperty Name="RequestByID" ColumnName="RequestByID" />
                 <ScalarProperty Name="RequestID" ColumnName="RequestID" />
                 <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
-                <ScalarProperty Name="SeekerID" ColumnName="SeekerID" />
-                <ScalarProperty Name="HospitalID" ColumnName="HospitalID" />
-                <ScalarProperty Name="BloodBankID" ColumnName="BloodBankID" />
-                <ScalarProperty Name="DonorID" ColumnName="DonorID" />
                 <ScalarProperty Name="RequiredBloodGroupID" ColumnName="RequiredBloodGroupID" />
                 <ScalarProperty Name="RequestTypeID" ColumnName="RequestTypeID" />
               </MappingFragment>
@@ -1298,6 +1442,22 @@
                 <ScalarProperty Name="BloodGroupID" ColumnName="BloodGroupID" />
                 <ScalarProperty Name="BloodBankID" ColumnName="BloodBankID" />
                 <ScalarProperty Name="BloodBankStockID" ColumnName="BloodBankStockID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AcceptedTypeTables">
+            <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.AcceptedTypeTable">
+              <MappingFragment StoreEntitySet="AcceptedTypeTable">
+                <ScalarProperty Name="AcceptedType" ColumnName="AcceptedType" />
+                <ScalarProperty Name="AcceptedTypeID" ColumnName="AcceptedTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestStatusTables">
+            <EntityTypeMapping TypeName="db_a8c2c8_blooddonationModel.RequestStatusTable">
+              <MappingFragment StoreEntitySet="RequestStatusTable">
+                <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+                <ScalarProperty Name="RequestStatusID" ColumnName="RequestStatusID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

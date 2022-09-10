@@ -90,6 +90,14 @@
                                     <a href="@Url.Content("~/Home/MainHome")">Home</a>
                                 </li>
 
+                                <li>
+                                    <a href="@Url.Content("~/Home/AboutUs")">About Us</a>
+                                </li>
+
+                                <li>
+                                    <a href="@Url.Content("~/Finder/FinderDonors")">Find Donor</a>
+                                </li>
+
                                 @if (userTypeID == 1)
                                 {
                                     <li><a href="@Url.Content("~/Accounts/AllNewUserRequests")" title="Accounts Requests">Accounts Request</a></li>
@@ -133,16 +141,6 @@
                                         </ul>
                                     </li>
                                 }
-
-                                <li>
-                                    <a href="#">Blog</a>
-                                    <ul class="drop-down">
-                                        <li><a href="blog.html">All Posts</a></li>
-                                        <li><a href="single.html">Single Page</a></li>
-                                    </ul>
-                                </li>
-
-                                <li><a href="about-us.html" title="About Us">About Us</a></li>
                             </ul>
                         </div>
                     }

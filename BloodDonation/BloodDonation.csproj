@@ -234,6 +234,7 @@
     <Compile Include="Controllers\BloodGroupController.cs" />
     <Compile Include="Controllers\CityTablesController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\FinderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\RequestTypeController.cs" />
@@ -338,6 +339,8 @@
     <Content Include="Views\BloodBank\AllCampaigns.cshtml" />
     <Content Include="Views\Home\AllCampaigns.cshtml" />
     <Content Include="Views\Accounts\AddNewDonorByBloodBank.cshtml" />
+    <Content Include="Views\Finder\FinderDonors.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

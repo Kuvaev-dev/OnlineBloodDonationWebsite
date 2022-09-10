@@ -84,15 +84,15 @@ namespace BloodDonation.Controllers
                 return RedirectToAction("Login", "Home");
             }
 
-            int bloodBankID;
-            int.TryParse(Convert.ToString(Session["BloodBankID"]), out bloodBankID);
+            int bloodBankId = 0;
+            int.TryParse(Convert.ToString(Session["BloodBankID"]), out bloodBankId);
 
-            campaignMV.BloodBankID = bloodBankID;
+            campaignMV.BloodBankID = bloodBankId;
             
             if (ModelState.IsValid)
             {
                 var campaign = new CampaignTable();
-                campaign.BloodBankID = bloodBankID;
+                campaign.BloodBankID = bloodBankId;
                 campaign.CampaignDate = campaignMV.CampaignDate;
                 campaign.StartTime = campaignMV.StartTime;
                 campaign.EndTime = campaignMV.EndTime;

@@ -79,7 +79,13 @@
                                 <a href="@Url.Content("~/Home/MainHome")">Home</a>
                             </li>
 
-                            <li><a href="about-us.html" title="About Us">About Us</a></li>
+                            <li>
+                                <a href="@Url.Content("~/Home/AboutUs")">About Us</a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.Content("~/Finder/FinderDonors")">Find Donor</a>
+                            </li>
 
                             <li>
                                 <a href="#">Campaign</a>
@@ -162,7 +168,7 @@
                                             <br />
                                             IN OTHER PERSON FACE
                                         </h2>
-                                        <a href="#" class="btn btn-theme margin-top-24">Donate Now</a>
+                                        <a href="#registrationSection" class="btn btn-theme margin-top-24">Find Donor</a>
                                         <a href="#" class="btn btn-theme btn-theme-invert margin-top-24">CALL: +38-096-114-9776</a>
                                     </div>
                                 </div> <!-- end .col-sm-12  -->
@@ -185,7 +191,7 @@
                                             <br>
                                             AND INSPIRES OTHERS.
                                         </h2>
-                                        <a href="#" class="btn btn-theme margin-top-24">Donate Now</a>
+                                        <a href="#registrationSection" class="btn btn-theme margin-top-24">Donate Now</a>
                                     </div>
                                 </div> <!-- end .col-sm-12  -->
                             </div> <!-- end .row  -->
@@ -341,11 +347,11 @@
                                             <div class="event-layout-1 theme-custom-box-shadow clearfix">
                                                 <figure class="event-img">
                                                     <a href="#">
-                                                        <img src="@Url.Content(item.CampaignPhoto)" alt="">
+                                                        <img src="@Url.Content($"{item.CampaignPhoto}")" alt="">
                                                     </a>
                                                 </figure>
                                                 <div class="event-info">
-                                                    <a class="event-date" href="#"><i class="fa fa-calendar-o"></i>@item.CampaignDate.ToString("dd MMMM, yyyyy")</a>
+                                                    <a class="event-date" href="#"><i class="fa fa-calendar-o"></i>@item.CampaignDate.ToString("dd MMMM, yyyy")</a>
                                                     <h4>
                                                         <a href="#">@item.CampaignTitle</a>
                                                     </h4>
@@ -401,7 +407,7 @@
 
     <!--  SECTION APPOINTMENT   -->
 
-    <section class="section-content-block section-secondary-bg">
+    <section id="registrationSection" class="section-content-block section-secondary-bg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
@@ -486,7 +492,7 @@
                     <div class="counter-block-1 text-center">
                         <i class="fa fa-heartbeat icon"></i>
                         <span class="counter">2578</span>
-                        <h4 class="text-capitalize">Success Smile</h4>
+                        <h4 class="text-capitalize">Blood Banks</h4>
                     </div>
                 </div> <!--  end .col-lg-3  -->
 
@@ -494,7 +500,7 @@
                     <div class="counter-block-1 text-center">
                         <i class="fa fa-stethoscope icon"></i>
                         <span class="counter">3235</span>
-                        <h4 class="text-capitalize">Happy Donors</h4>
+                        <h4 class="text-capitalize">Seekers</h4>
                     </div>
                 </div> <!--  end .col-lg-3  -->
 
@@ -502,7 +508,7 @@
                     <div class="counter-block-1 text-center">
                         <i class="fa fa-users icon"></i>
                         <span class="counter">3568</span>
-                        <h4 class="text-capitalize">Happy Recipient</h4>
+                        <h4 class="text-capitalize">Donors</h4>
                     </div>
                 </div> <!--  end .col-lg-3  -->
 
@@ -510,7 +516,7 @@
                     <div class="counter-block-1 text-center">
                         <i class="fa fa-building icon"></i>
                         <span class="counter">1364</span>
-                        <h4 class="text-capitalize">Total Awards</h4>
+                        <h4 class="text-capitalize">Hospitals</h4>
                     </div>
                 </div> <!--  end .col-lg-3  -->
             </div> <!-- end row  -->
@@ -518,7 +524,7 @@
     </section>  <!--  end .appointment-section  -->
     <!-- SECTION TEAM   -->
 
-    <section class="section-content-block section-custom-bg" data-bg_img="@Url.Content("~/Content/Template/images/team_feat_bg.jpg' data-bg_size='cover' data-bg_position='top center")" data-bg_opacity="0">
+    <section class="section-content-block section-custom-bg" data-bg_img="@Url.Content("~/Content/Template/images/team_feat_bg.jpg")" data-bg_size='cover' data-bg_position='top center' data-bg_opacity="0">
         <div class="container margin-top-80">
             <div class="row section-heading-wrapper-alt">
                 <div class="col-md-12 col-sm-12 text-center no-img-separator">

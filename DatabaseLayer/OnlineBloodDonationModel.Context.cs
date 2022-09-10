@@ -40,5 +40,7 @@ namespace DatabaseLayer
         public virtual DbSet<CampaignTable> CampaignTables { get; set; }
         public virtual DbSet<BloodBankStockDetailTable> BloodBankStockDetailTables { get; set; }
         public virtual DbSet<BloodBankStockTable> BloodBankStockTables { get; set; }
+        public virtual DbSet<AcceptedTypeTable> AcceptedTypeTables { get; set; }
+        public virtual DbSet<RequestStatusTable> RequestStatusTables { get; set; }
     }
 }
