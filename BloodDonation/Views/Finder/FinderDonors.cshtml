@@ -43,12 +43,12 @@
                     <tr>
                         <td class="text-left">
                             <div>
-                                <strong>@item.FullName</strong>
+                                <strong>@item.FullName (@item.BloodGroup)</strong>
                             </div>
                             @item.UserType
                         </td>
                         <td class="text-right">
-                            @Html.ActionLink("Request", "Edit", new { id = item.DonorID, donorTypeID = item.UserTypeID }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Request", "RequestForBlood", new { donorID = item.DonorID, userTypeID = item.UserTypeID, bloodGroupID = item.BloodGroupID }, new { @class = "btn btn-primary" })
                         </td>
                     </tr>
                 }

@@ -24,7 +24,7 @@ namespace BloodDonation.Models
         public string UserName { get; set; }
         public string EmailAddress { get; set; }
         public string Password { get; set; }
-        public int AccountStatus { get; set; }
+        public int AccountStatusID { get; set; }
         public int UserTypeID { get; set; }
         public string Description { get; set; }
     }

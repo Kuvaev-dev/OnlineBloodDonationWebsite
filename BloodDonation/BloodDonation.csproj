@@ -256,6 +256,7 @@
     <Compile Include="Models\FinderSearchResultMV.cs" />
     <Compile Include="Models\HospitalMV.cs" />
     <Compile Include="Models\ReigstrationMV.cs" />
+    <Compile Include="Models\RequestMV.cs" />
     <Compile Include="Models\RequestTypeMV.cs" />
     <Compile Include="Models\SeekerMV.cs" />
     <Compile Include="Models\UserMV.cs" />
@@ -343,6 +344,8 @@
     <Content Include="Views\Accounts\AddNewDonorByBloodBank.cshtml" />
     <Content Include="Views\Finder\FinderDonors.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Finder\RequestForBlood.cshtml" />
+    <Content Include="Views\Finder\ShowAllRequests.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
