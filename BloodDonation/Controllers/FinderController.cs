@@ -24,6 +24,9 @@ namespace BloodDonation.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult FinderDonors(FinderMV finderMV)
         {
+            int userID = 0;
+            int.TryParse(Convert.ToString(Session["UserID"]), out userID);
+
             var setDate = DateTime.Now.AddDays(-120);
 
             var donors = DB.DonorTables.Where(d => d.BloodGroupID == finderMV.BloodGroupID &&
@@ -32,17 +35,23 @@ namespace BloodDonation.Controllers
             foreach (var donor in donors)
             {
                 var user = DB.UserTables.Find(donor.UserID);
-                if (user.AccountStatusID == 2)  // Approved
+
+                if (userID != user.UserID)
                 {
-                    var addDonor = new FinderSearchResultMV();
-                    addDonor.BloodGroup = donor.BloodGroupTable.BloodGroup;
-                    addDonor.BloodGroupID = donor.BloodGroupID;
-                    addDonor.ContactNo = donor.ContactNo;
-                    addDonor.DonorID = donor.DonorID;
-                    addDonor.FullName = donor.FullName;
-                    addDonor.UserType = "Person";
-                    addDonor.UserTypeID = user.UserTypeID;
-                    finderMV.SearchResult.Add(addDonor);
+                    if (user.AccountStatusID == 2)  // Approved
+                    {
+                        var addDonor = new FinderSearchResultMV();
+                        addDonor.BloodGroup = donor.BloodGroupTable.BloodGroup;
+                        addDonor.BloodGroupID = donor.BloodGroupID;
+                        addDonor.ContactNo = donor.ContactNo;
+                        addDonor.UserID = donor.UserID;
+                        addDonor.DonorID = donor.DonorID;
+                        addDonor.FullName = donor.FullName;
+                        addDonor.Address = donor.Location;
+                        addDonor.UserType = "Person";
+                        addDonor.UserTypeID = user.UserTypeID;
+                        finderMV.SearchResult.Add(addDonor);
+                    }
                 }
             }
 
@@ -53,17 +62,22 @@ namespace BloodDonation.Controllers
                 var findBloodBank = DB.BloodBankTables.Find(bloodBank.BloodBankID);
                 var user = DB.UserTables.Find(findBloodBank.UserID);
 
-                if (user.AccountStatusID == 2)  // Approved
+                if (userID != user.UserID)
                 {
-                    var addDonor = new FinderSearchResultMV();
-                    addDonor.BloodGroup = bloodBank.BloodGroupTable.BloodGroup;
-                    addDonor.BloodGroupID = bloodBank.BloodGroupID;
-                    addDonor.ContactNo = bloodBank.BloodBankTable.PhoneNo;
-                    addDonor.DonorID = bloodBank.BloodBankID;
-                    addDonor.FullName = bloodBank.BloodBankTable.BloodBankName;
-                    addDonor.UserType = "Blood Bank";
-                    addDonor.UserTypeID = user.UserTypeID;
-                    finderMV.SearchResult.Add(addDonor);
+                    if (user.AccountStatusID == 2)  // Approved
+                    {
+                        var addDonor = new FinderSearchResultMV();
+                        addDonor.BloodGroup = bloodBank.BloodGroupTable.BloodGroup;
+                        addDonor.BloodGroupID = bloodBank.BloodGroupID;
+                        addDonor.ContactNo = bloodBank.BloodBankTable.PhoneNo;
+                        addDonor.DonorID = bloodBank.BloodBankID;
+                        addDonor.UserID = bloodBank.BloodBankTable.UserID;
+                        addDonor.FullName = bloodBank.BloodBankTable.BloodBankName;
+                        addDonor.Address = bloodBank.BloodBankTable.Address;
+                        addDonor.UserType = "Blood Bank";
+                        addDonor.UserTypeID = user.UserTypeID;
+                        finderMV.SearchResult.Add(addDonor);
+                    }
                 }
             }
 
