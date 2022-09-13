@@ -236,5 +236,20 @@ namespace BloodDonation.Controllers
 
             return View(requestList);
         }
+
+        public ActionResult CancelRequest(int? id)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var request = DB.RequestTables.Find(id);
+            request.RequestStatusID = 4;
+            DB.Entry(request).State = System.Data.Entity.EntityState.Modified;
+            DB.SaveChanges();
+
+            return RedirectToAction("ShowAllRequests");
+        }
     }
 }

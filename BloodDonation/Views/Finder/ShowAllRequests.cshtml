@@ -39,7 +39,7 @@
                         @Html.DisplayFor(modelItem => item.RequestDate)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.AcceptedFullName)
+                        @item.AcceptedFullName (@item.AcceptedType)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.BloodGroup)
@@ -51,13 +51,13 @@
                         @Html.DisplayFor(modelItem => item.RequestDetails)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.AcceptedType)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.RequestStatus)
                     </td>
                     <td>
-                        @Html.ActionLink("Cancel", "CancelRequest", new { id = item.RequestID }, new { @class = "btn btn-danger" })
+                        @if (item.RequestStatusID == 1)
+                        {
+                            @Html.ActionLink("Cancel", "CancelRequest", new { id = item.RequestID }, new { @class = "btn btn-danger" })
+                        }
                     </td>
                 </tr>
             }
