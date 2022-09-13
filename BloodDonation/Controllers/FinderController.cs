@@ -200,29 +200,41 @@ namespace BloodDonation.Controllers
             var requests = DB.RequestTables.Where(r => r.RequestByID == requestByID &&
                                                        r.RequestTypeID == requestTypeID).ToList();
 
-            //var requestList = new List<RequestMV>();
-            //foreach (var request in requestList)
-            //{
-            //    var addRequest = new RequestMV();
-            //    addRequest.RequestID = request.RequestID;
-            //    addRequest.RequestDate = request.RequestDate;
-            //    addRequest.RequestByID = request.RequestByID;
-            //    addRequest.AcceptedID = request.AcceptedID;
-            //    addRequest.AcceptedFullName = "";
-            //    addRequest.AcceptedTypeID = request.AcceptedTypeID;
-            //    addRequest.AcceptedType = "";
-            //    addRequest.RequiredBloodGroupID = request.RequiredBloodGroupID;
-            //    addRequest.BloodGroup = "";
-            //    addRequest.RequestTypeID = request.RequestTypeID;
-            //    addRequest.RequestTypeStatus = "";
-            //    addRequest.RequestStatusID = request.RequestStatusID;
-            //    addRequest.RequestStatus = "";
-            //    addRequest.ExpectedDate = request.ExpectedDate;
-            //    addRequest.RequestDetails = request.RequestDetails;
-            //    requestList.Add(addRequest);
-            //}
+            var requestList = new List<RequestListMV>();
+            foreach (var request in requestList)
+            {
+                var addRequest = new RequestListMV();
 
-            return View(requests);
+                addRequest.RequestID = request.RequestID;
+                addRequest.RequestDate = request.RequestDate;
+                addRequest.RequestByID = request.RequestByID;
+                addRequest.AcceptedID = request.AcceptedID;
+                addRequest.AcceptedTypeID = request.AcceptedTypeID;
+                addRequest.RequiredBloodGroupID = request.RequiredBloodGroupID;
+                addRequest.RequestTypeID = request.RequestTypeID;
+                addRequest.RequestStatusID = request.RequestStatusID;
+                addRequest.ExpectedDate = request.ExpectedDate;
+                addRequest.RequestDetails = request.RequestDetails;
+
+                if (request.AcceptedTypeID == 1)    // Donor
+                {
+                    var getDonor = DB.DonorTables.Find(request.AcceptedID);
+                    addRequest.AcceptedFullName = getDonor.FullName;
+                    addRequest.ContactNo = getDonor.ContactNo;
+                    addRequest.Address = getDonor.Location;
+                }
+                else if (request.AcceptedTypeID == 2)   // Blood Bank
+                {
+                    var getBloodBank = DB.BloodBankTables.Find(request.AcceptedID);
+                    addRequest.AcceptedFullName = getBloodBank.BloodBankName;
+                    addRequest.ContactNo = getBloodBank.PhoneNo;
+                    addRequest.Address = getBloodBank.Address;
+                }
+
+                requestList.Add(addRequest);
+            }
+
+            return View(requestList);
         }
     }
 }

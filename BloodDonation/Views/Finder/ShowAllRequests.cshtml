@@ -1,81 +1,67 @@
-﻿@model IEnumerable<DatabaseLayer.RequestTable>
+﻿@model IEnumerable<BloodDonation.Models.RequestListMV>
 
 @{
-    ViewBag.Title = "ShowAllRequests";
+    ViewBag.Title = "All Requests";
 }
 
-<h2>ShowAllRequests</h2>
+<div class="col-md-8">
+    <div class="contact-form-block">
+        <h2 class="contact-title">All Requests</h2>
+        <p>
+            @Html.ActionLink("New Request", "FinderDonors", null, new { @class = "btn btn-success" })
+        </p>
+        <table class="table table-hover">
+            <tr>
+                <th>
+                    Request Date
+                </th>
+                <th>
+                    Donor
+                </th>
+                <th>
+                    Blood Group
+                </th>
+                <th>
+                    Expected Date
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Action
+                </th>
+            </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RequestDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequestByID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequiredBloodGroupID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ExpectedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequestDetails)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AcceptedTypeTable.AcceptedType)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DonorTable.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequestStatusTable.RequestStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RequestTypeTable.RequestType)
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RequestDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AcceptedFullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BloodGroup)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ExpectedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RequestDetails)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AcceptedType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RequestStatus)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Cancel", "CancelRequest", new { id = item.RequestID }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestByID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequiredBloodGroupID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpectedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestDetails)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AcceptedTypeTable.AcceptedType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DonorTable.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestStatusTable.RequestStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestTypeTable.RequestType)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RequestID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RequestID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RequestID })
-        </td>
-    </tr>
-}
-
-</table>
+        </table>
+    </div>
+</div>

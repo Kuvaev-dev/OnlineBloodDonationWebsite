@@ -85,63 +85,71 @@
                         int.TryParse(sessionUser, out userID);
 
                         <div class="navbar-collapse collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="@Url.Content("~/Home/MainHome")">Home</a>
-                                </li>
+                                                <ul class="nav navbar-nav navbar-right">
+                                                    <li>
+                                                        <a href="@Url.Content("~/Home/MainHome")">Home</a>
+                                                    </li>
 
-                                <li>
-                                    <a href="@Url.Content("~/Home/AboutUs")">About Us</a>
-                                </li>
+                                                    <li>
+                                                        <a href="@Url.Content("~/Home/AboutUs")">About Us</a>
+                                                    </li>
 
-                                <li>
-                                    <a href="@Url.Content("~/Finder/FinderDonors")">Find Donor</a>
-                                </li>
+                                                    <li>
+                                                        <a href="@Url.Content("~/Finder/FinderDonors")">Find Donor</a>
+                                                    </li>
 
-                                @if (userTypeID == 1)
-                                {
-                                    <li><a href="@Url.Content("~/Accounts/AllNewUserRequests")" title="Accounts Requests">Accounts Request</a></li>
-                                }
+                                                    @if (userTypeID == 1)
+                                                    {
+                                                        <li><a href="@Url.Content("~/Accounts/AllNewUserRequests")" title="Accounts Requests">Accounts Request</a></li>
+                                                    }
+                                                    else if (userTypeID == 3 || userTypeID == 4 || userTypeID == 5)
+                                                    {
+                                                        <li><a href="@Url.Content("~/Finder/ShowAllRequests")" title="All Requests">All Requests</a></li>
+                                                    }
+                                                    else if (userTypeID == 2 || userTypeID == 5)
+                                                    {
+                                                        <li><a href="@Url.Content("~/Finder/DonorRequests")" title="All Requests">New Requests</a></li>
+                                                    }
 
-                                <li>
-                                    <a href="#">Campaign</a>
-                                    <ul class="drop-down">
-                                        <li><a href="@Url.Content("~/Home/AllCampaigns")">All Campaigns</a></li>
-                                        <li><a href="event-single.html">Single Campaign</a></li>
-                                        @if (userTypeID == 5)
-                                        {
-                                            <li><a href="@Url.Content("~/BloodBank/AllCampaigns")">Blood Bank Campaigns</a></li>
-                                            <li><a href="@Url.Content("~/BloodBank/BloodBankStock")">Stock</a></li>
-                                        }
-                                    </ul>
-                                </li>
+                                                    <li>
+                                                        <a href="#">Campaign</a>
+                                                        <ul class="drop-down">
+                                                            <li><a href="@Url.Content("~/Home/AllCampaigns")">All Campaigns</a></li>
+                                                            <li><a href="event-single.html">Single Campaign</a></li>
+                                                            @if (userTypeID == 5)
+                                                            {
+                                                                <li><a href="@Url.Content("~/BloodBank/AllCampaigns")">Blood Bank Campaigns</a></li>
+                                                                <li><a href="@Url.Content("~/BloodBank/BloodBankStock")">Stock</a></li>
+                                                            }
+                                                        </ul>
+                                                    </li>
 
-                                @if (userTypeID == 1)
-                                {
-                                    <li>
-                                        <a href="#">Setting</a>
-                                        <ul class="drop-down">
-                                            <li><a href="@Url.Content("~/User/UserProfile/" + userID + "")">User Profile</a></li>
-                                            <li><a href="@Url.Content("~/AccountStatus/AllAccountStatus")">Account Statuses</a></li>
-                                            <li><a href="@Url.Content("~/BloodGroup/AllBloodGroups")">Blood Groups</a></li>
-                                            <li><a href="@Url.Content("~/CityTables/Index")">Cities</a></li>
-                                            <li><a href="@Url.Content("~/RequestType/AllRequestType")">Request Types</a></li>
-                                            <li><a href="@Url.Content("~/UserType/AllUserType")">User Types</a></li>
-                                            <li><a href="@Url.Content("~/Home/Logout/" + userID + "")">Sign Out</a></li>
-                                        </ul>
-                                    </li>
-                                }
-                                else if (userTypeID > 1)
-                                {
-                                    <li>
-                                        <a href="#">Setting</a>
-                                        <ul class="drop-down">
-                                            <li><a href="@Url.Content("~/User/UserProfile/" + userID + "")">User Profile</a></li>
-                                            <li><a href="@Url.Content("~/Home/Logout/" + userID + "")">Sign Out</a></li>
-                                        </ul>
-                                    </li>
-                                }
-                            </ul>
+                                                    @if (userTypeID == 1)
+                                                    {
+                                                        <li>
+                                                            <a href="#">Setting</a>
+                                                            <ul class="drop-down">
+                                                                <li><a href="@Url.Content("~/User/UserProfile/" + userID + "")">User Profile</a></li>
+                                                                <li><a href="@Url.Content("~/AccountStatus/AllAccountStatus")">Account Statuses</a></li>
+                                                                <li><a href="@Url.Content("~/BloodGroup/AllBloodGroups")">Blood Groups</a></li>
+                                                                <li><a href="@Url.Content("~/CityTables/Index")">Cities</a></li>
+                                                                <li><a href="@Url.Content("~/RequestType/AllRequestType")">Request Types</a></li>
+                                                                <li><a href="@Url.Content("~/UserType/AllUserType")">User Types</a></li>
+                                                                <li><a href="@Url.Content("~/Home/Logout/" + userID + "")">Sign Out</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    }
+                                                    else if (userTypeID > 1)
+                                                    {
+                                                        <li>
+                                                            <a href="#">Setting</a>
+                                                            <ul class="drop-down">
+                                                                <li><a href="@Url.Content("~/User/UserProfile/" + userID + "")">User Profile</a></li>
+                                                                <li><a href="@Url.Content("~/Home/Logout/" + userID + "")">Sign Out</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    }
+                                                </ul>
                         </div>
                     }
                 </div>
