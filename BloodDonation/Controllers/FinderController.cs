@@ -346,5 +346,28 @@ namespace BloodDonation.Controllers
 
             return View(requestList);
         }
+
+        public ActionResult CompleteRequest(int? id)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var request = DB.RequestTables.Find(id);
+            if (request.RequestTypeID == 1)
+            {
+                var donor = DB.DonorTables.Find(request.AcceptedID);
+                donor.LastDonationDate = DateTime.Now;
+                DB.Entry(donor).State = System.Data.Entity.EntityState.Modified;
+                DB.SaveChanges();
+            }
+
+            request.RequestStatusID = 3;
+            DB.Entry(request).State = System.Data.Entity.EntityState.Modified;
+            DB.SaveChanges();
+
+            return RedirectToAction("ShowAllRequests");
+        }
     }
 }

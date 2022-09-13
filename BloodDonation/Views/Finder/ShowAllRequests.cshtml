@@ -58,6 +58,10 @@
                         {
                             @Html.ActionLink("Cancel", "CancelRequest", new { id = item.RequestID }, new { @class = "btn btn-danger" })
                         }
+                        else if (item.RequestStatusID == 2)
+                        {
+                            @Html.ActionLink("Complete", "CompleteRequest", new { id = item.RequestID }, new { @class = "btn btn-success" })
+                        }
                     </td>
                 </tr>
             }
