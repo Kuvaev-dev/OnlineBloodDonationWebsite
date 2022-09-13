@@ -251,5 +251,100 @@ namespace BloodDonation.Controllers
 
             return RedirectToAction("ShowAllRequests");
         }
+
+        public ActionResult AcceptRequest(int? id)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var request = DB.RequestTables.Find(id);
+            request.RequestStatusID = 2;
+            DB.Entry(request).State = System.Data.Entity.EntityState.Modified;
+            DB.SaveChanges();
+
+            return RedirectToAction("ShowAllRequests");
+        }
+
+        public ActionResult DonorRequests()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            int acceptedTypeID = 0;
+            int requestTypeID;
+            int acceptedByID = 0;
+            int.TryParse(Convert.ToString(Session["UserTypeID"]), out acceptedTypeID);
+
+            if (acceptedTypeID == 2) // Donor
+            {
+                requestTypeID = 1;
+                int.TryParse(Convert.ToString(Session["DonorID"]), out acceptedByID);
+            }
+            else if (acceptedTypeID == 3) // Seeker
+            {
+                int.TryParse(Convert.ToString(Session["SeekerID"]), out acceptedByID);
+            }
+            else if (acceptedTypeID == 4) // Hospital
+            {
+                requestTypeID = 2;
+                int.TryParse(Convert.ToString(Session["HospitalID"]), out acceptedByID);
+            }
+            else if (acceptedTypeID == 5) // Blood Bank
+            {
+                requestTypeID = 2;
+                int.TryParse(Convert.ToString(Session["BloodBankID"]), out acceptedByID);
+            }
+
+            var requests = DB.RequestTables.Where(r => r.AcceptedID == acceptedByID &&
+                                                       r.AcceptedTypeID == acceptedTypeID).ToList();
+
+            var requestList = new List<RequestListMV>();
+            foreach (var request in requestList)
+            {
+                var addRequest = new RequestListMV();
+
+                if (request.RequestTypeID == 1)    // Seeker
+                {
+                    var getSeeker = DB.SeekerTables.Find(request.RequestByID);
+                    addRequest.RequestBy = getSeeker.FullName;
+                    addRequest.ContactNo = getSeeker.ContactNo;
+                    addRequest.Address = getSeeker.Address;
+                }
+                else if (request.RequestTypeID == 2)   // Hospital
+                {
+                    var getHospital = DB.HospitalTables.Find(request.RequestByID);
+                    addRequest.AcceptedFullName = getHospital.FullName;
+                    addRequest.ContactNo = getHospital.PhoneNo;
+                    addRequest.Address = getHospital.Address;
+                }
+                else if (request.RequestTypeID == 3)   // Blood Bank
+                {
+                    var getBloodBank = DB.BloodBankTables.Find(request.RequestByID);
+                    addRequest.AcceptedFullName = getBloodBank.BloodBankName;
+                    addRequest.ContactNo = getBloodBank.PhoneNo;
+                    addRequest.Address = getBloodBank.Address;
+                }
+
+
+                addRequest.RequestID = request.RequestID;
+                addRequest.RequestDate = request.RequestDate;
+                addRequest.RequestByID = request.RequestByID;
+                addRequest.AcceptedID = request.AcceptedID;
+                addRequest.AcceptedTypeID = request.AcceptedTypeID;
+                addRequest.RequiredBloodGroupID = request.RequiredBloodGroupID;
+                addRequest.RequestTypeID = request.RequestTypeID;
+                addRequest.RequestStatusID = request.RequestStatusID;
+                addRequest.ExpectedDate = request.ExpectedDate;
+                addRequest.RequestDetails = request.RequestDetails;
+
+                requestList.Add(addRequest);
+            }
+
+            return View(requestList);
+        }
     }
 }
